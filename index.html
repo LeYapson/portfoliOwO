@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Théau Yapi | Portfolio Parallaxe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Police pixel rétro -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="parallax-container">
+        <!-- Les IDs correspondent aux styles CSS ci-dessus -->
+        <div class="parallax-layer" id="layer-sky"></div>
+        <div class="parallax-layer" id="layer-clouds"></div>
+        <div class="parallax-layer" id="layer-ground"></div>
+
+    <div class="content pixel-border">
+            <!-- En-tête (repris de ton HTML original) -->
+            <header>
+                <img src="assets/img/avatar.png" alt="Mon avatar pastel" class="avatar">
+                <h1>théau yapi <span class="uwu">(◕‿◕✿)</span></h1>
+                <p class="tagline">développeur · streamer · organisateur d'événements</p>
+            </header>
+
+            <!-- Navigation -->
+            <nav>
+                <a href="#about">à propos</a>
+                <a href="#projects">projets</a>
+                <a href="#contact">contact</a>
+            </nav>
+
+            <!-- Section "À propos" -->
+            <section id="about">
+                <h2>&gt; à propos de moi &lt;</h2>
+                <p>
+                    Salut ! Je m'appelle Théau, je suis un développeur passionné par les jeux vidéo, les communautés en ligne et les voitures.
+                    <br><br>
+                    Ce portfolio est un mélange de <strong>nostalgie des années 2000</strong> et de <strong>douceur pastel</strong>, comme mes streams et mes projets.
+                    <br>
+                    Bienvenue dans mon petit coin d'internet ! <span class="uwu">♥</span>
+                </p>
+            </section>
+
+            <!-- Section "Projets" -->
+            <section id="projects">
+                <h2>&gt; mes projets <span class="uwu">(・∀・)</span> &lt;&lt;</h2>
+
+                <div class="project">
+                    <h3>🎮 Elementaria</h3>
+                    <p>Un jeu où tu contrôles les éléments (et où je contrôle les bugs). En développement actif !</p>
+                </div>
+
+                <div class="project">
+                    <h3>🚗 THE STAND</h3>
+                    <p>Des rassos automobiles pour tous, avec une ambiance conviviale et des voitures de rêve.</p>
+                </div>
+
+                <div class="project">
+                    <h3>💻 Portfolio UwU</h3>
+                    <p>Ce site même ! Un hommage aux sites persos des années 2000, revisité en pastel.</p>
+                </div>
+            </section>
+
+            <!-- Section "Contact" -->
+            <section id="contact">
+                <h2>&gt; contact <span class="uwu">(｡♥‿♥｡)</span> &lt;&lt;</h2>
+                <p>
+                    Envies de discuter d'un projet, d'une collaboration ou juste de dire bonjour ?
+                    <br>
+                    Envoie-moi un message : <a href="mailto:theau@yapi.dev">theau@yapi.dev</a>
+                </p>
+            </section>
+
+            <!-- Pied de page -->
+            <footer>
+                <p>
+                    fait avec ❤️ et des couleurs pastel | © 2025
+                    <br>
+                    <a href="https://twitch.tv/theau_yapi" target="_blank">twitch</a> ·
+                    <a href="https://github.com/theauyapi" target="_blank">github</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="parallax.js" defer></script>
+    <div class="scanlines" aria-hidden="true"></div>
+</body>
+</html>
