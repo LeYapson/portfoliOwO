@@ -1,21 +1,48 @@
-PortfoliOwO is a personal portfolio website designed for the monthly codedex challenge "back 2 school". It showcases my projects, skills, and experiences in a visually kawaii manner.
+# PortfoliOwO - Le Portfolio Kawaii
 
-## Features
-- Cute and colorful design with kawaii elements
-- Responsive layout for all devices
-- Easy navigation and user-friendly interface
-- Project showcases with images and descriptions
-- Skills section highlighting my expertise
-- Contact form for inquiries and collaborations
+PortfoliOwO est un site portfolio personnel conçu pour le challenge mensuel Codédex "Back 2 School". Il présente mes projets, compétences et expériences d'une manière visuellement kawaii et nostalgique des sites web des années 2000. Ce projet est spécialement créé pour participer à la catégorie UwU du challenge (portfolio le plus mignon et adorable).
 
-## Technologies Used
+## ✨ Fonctionnalités
+- Design coloré et mignon avec des éléments kawaii
+- Mise en page responsive pour tous les appareils
+- Navigation facile et interface conviviale
+- Présentation des projets avec descriptions
+- Effet parallaxe pour un défilement unique
+- Mascotte interactive qui suit le curseur et réagit aux actions
+- Collection d'animaux virtuels à adopter et dont il faut prendre soin
+- Lecteur de musique kawaii déplaçable
+- Sélecteur de thèmes avec plusieurs options pastel
+- Effets visuels adorables comme la pluie de cœurs pixelisés
+- Easter eggs cachés pour les visiteurs curieux
+
+## 🌈 Easter Eggs
+- Tapez "uwu" sur votre clavier pour déclencher une explosion d'émojis kawaii
+- Double-cliquez n'importe où pour créer une explosion de cœurs
+- Double-cliquez sur l'avatar pour activer/désactiver la musique d'ambiance
+- Faites défiler rapidement la page pour déclencher une pluie de cœurs pixelisés
+
+## 🛠️ Technologies Utilisées
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript (Vanilla JS)
+- Design Responsive
 
+## 🎨 Thèmes
+- **Pastel** - Le thème par défaut avec des tons doux et apaisants
+- **Pastel Nuit** - Un thème sombre avec des tons pastel pour la navigation nocturne
+- **Bonbon** - Des couleurs vives et joyeuses inspirées des sucreries
+- **Pixel Rétro** - Un hommage aux jeux vidéo rétro avec une palette de couleurs plus contrastée
 
-## Installation
-1. Clone the repository: `git clone https://github.com/leyapson/portfoliOwO.git`
-2. Navigate to the project directory: `cd portfoliOwO`
-3. Open `index.html` in your web browser
-4. Customize the content to fit your personal portfolio
+## 💻 Installation
+1. Clonez le dépôt: `git clone https://github.com/leyapson/portfoliOwO.git`
+2. Naviguez vers le répertoire du projet: `cd portfoliOwO`
+3. Ouvrez `index.html` dans votre navigateur web
+4. Personnalisez le contenu selon vos besoins
+
+## ✏️ Crédits
+- Design et développement par Théau Yapi
+- Musiques libres de droits de Pixabay
+- Icônes emoji standard
+
+## 💕 Participation au Challenge Codédex
+Ce portfolio a été créé pour participer à la catégorie UwU du challenge Codédex "Back 2 School", qui récompense le portfolio le plus mignon et adorable.

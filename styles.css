@@ -6,6 +6,11 @@
             --tertiary-color: #e2d1f9;
             --border-color: #ffd1dc;
         }
+        
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
 
         body {
             font-family: 'Comic Neue', cursive;
@@ -15,6 +20,8 @@
             padding: 0;
             line-height: 1.6;
             cursor: url('assets/cursor-pastel.cur'), auto;
+            overflow-x: hidden; /* évite le scroll horizontal */
+            height: 100%; /* permet au body de s'adapter au contenu */
         }
 
         .container {
@@ -23,11 +30,12 @@
             padding: 2rem;
         }
 
-        /* Parallax layers */
+        /* Background layers (sans effet parallaxe) */
         .parallax-container {
             position: relative;
-            height: 200vh; /* 2 screens to allow scrolling */
-            overflow-x: hidden;
+            min-height: 100vh; /* hauteur minimale pour couvrir l'écran */
+            overflow: visible; /* permet au contenu de s'étendre naturellement */
+            height: auto; /* permet au contenu de déterminer la hauteur */
         }
 
         .parallax-layer {
@@ -37,39 +45,37 @@
             width: 100%;
             height: 100%;
             background-repeat: repeat-x;
-            will-change: transform;
             image-rendering: pixelated; /* For crisp pixel-art */
         }
 
         #layer-sky {
             background-image: url('assets/img/ciel.png');
-            background-size: auto 100%;
+            background-size: cover;
             z-index: -3;
         }
 
         #layer-clouds {
             background-image: url('assets/img/nuage.png');
-            background-position-y: 20%;
-            background-size: auto 60%;
+            background-position: center 20%;
+            background-size: cover;
             z-index: -2;
+            opacity: 0.9;
         }
 
-        /* Place ground inside the parallax container (absolute) so it appears reliably */
+        /* Sol fixe en bas de la page */
         #layer-ground {
-            position: absolute; /* inside .parallax-container */
+            position: fixed; 
             left: 0;
             right: 0;
             bottom: 0;
-            height: 320px; /* adjust based on your ground image height */
+            height: 150px; 
             background-image: url('assets/img/sol.png');
-            background-position: bottom center;
-            background-size: contain;
-            background-repeat: no-repeat;
-            z-index: -1;
-            opacity: 0; /* hidden until scrolled */
+            background-position: center bottom;
+            background-size: contain; /* mieux adapté pour l'image de sol */
+            background-repeat: repeat-x; 
+            z-index: 1;
             pointer-events: none;
-            transform: translate3d(0, 40px, 0);
-            transition: transform 400ms ease-out, opacity 400ms ease-out;
+            opacity: 0.95;
         }
 
         /* when visible, place at natural position */
@@ -78,16 +84,19 @@
             opacity: 1;
         }
 
-        /* Content area above parallax layers */
+        /* Content area above background layers */
         .content {
             position: relative;
-            z-index: 10; /* keep content above background layers */
+            z-index: 2; /* au-dessus du sol mais en dessous des éléments d'UI */
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px; /* more breathing room */
-            background-color: rgba(255, 255, 255, 0.92);
+            background-color: rgba(255, 255, 255, 0.95); /* plus opaque */
             border: 2px solid var(--accent-color);
-            border-radius: 6px;
+            border-radius: 10px; /* bordure plus arrondie */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* ajout d'ombre */
+            margin-bottom: 160px; /* espace en bas pour que le contenu ne soit pas caché par le sol */
+            overflow-y: visible; /* éviter le double scroll */
         }
 
         /* En-tête */
@@ -99,24 +108,29 @@
         }
 
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 3px solid var(--accent-color);
+            border: 5px solid var(--accent-color);
             object-fit: cover;
             margin-bottom: 1rem;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .avatar:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(5deg);
+            border-color: var(--secondary-color);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         h1 {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin: 0.5rem 0;
             color: var(--accent-color);
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8), 4px 4px 0px rgba(0, 0, 0, 0.1);
+            letter-spacing: 1px;
         }
 
         /* Pixel font for headings and retro vibe */
@@ -173,34 +187,68 @@
         nav {
             text-align: center;
             margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         nav a {
-            margin: 0 1rem;
+            margin: 0;
             color: var(--accent-color);
             text-decoration: none;
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.9rem;
-            padding: 0.3rem 0.8rem;
-            border: 1px solid var(--accent-color);
-            border-radius: 3px;
-            transition: all 0.2s;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--accent-color);
+            border-radius: 20px;
+            transition: all 0.3s;
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-color);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: -1;
         }
 
         nav a:hover {
-            background-color: var(--accent-color);
             color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav a:hover::before {
+            transform: translateX(0);
         }
 
         /* Sections */
         section {
-            margin: 2rem 0;
-            padding: 1.5rem;
+            margin: 2.5rem 0;
+            padding: 2rem;
             background-color: rgba(255, 255, 255, 0.95);
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
             position: relative;
             z-index: 11; /* above pseudo-element dither */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
 
         h2 {
@@ -269,4 +317,574 @@
 
         a:hover {
             text-shadow: 0 0 5px var(--accent-color);
+        }
+        
+        /* Styles de la mascotte kawaii */
+        .kawaii-mascot {
+            position: fixed;
+            bottom: 180px; /* Plus haut pour être au-dessus du sol */
+            left: 20px;
+            width: 150px; /* Encore plus grand pour mieux voir les expressions */
+            height: 150px; /* Encore plus grand pour mieux voir les expressions */
+            background-color: white; /* Fond blanc pour mieux ressortir */
+            border: 3px solid var(--accent-color); /* Bordure plus épaisse */
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1010; /* Au-dessus des autres éléments */
+            user-select: none;
+            pointer-events: none;
+            transition: transform 0.1s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+            animation: float 3s ease-in-out infinite;
+            overflow: visible; /* Pour que la bulle de dialogue ne soit pas coupée */
+        }
+        
+        .mascot-face {
+            font-size: 2.2rem; /* Taille encore augmentée pour les expressions */
+            line-height: 1.2;
+            text-align: center;
+            transition: transform 0.3s;
+            width: 120px; /* Largeur définie pour éviter les débordements */
+        }
+        
+        .mascot-speech-bubble {
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+            max-width: 180px;
+            text-align: center;
+            z-index: 1030; /* Au-dessus de tout */
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            color: var(--text-color);
+        }
+        
+        .mascot-speech-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px 8px 0;
+            border-style: solid;
+            border-color: var(--accent-color) transparent transparent;
+        }
+        
+        .mascot-speech-bubble.visible {
+            opacity: 1;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Animations d'émojis flottants (pour l'easter egg) */
+        .floating-emoji {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: floatUp 3s ease-out forwards;
+            z-index: 1000;
+        }
+        
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Styles pour les animaux virtuels */
+        #virtual-pets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .pet-card {
+            background-color: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 15px;
+            width: 200px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pet-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pet-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color), var(--tertiary-color));
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .pet-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 2.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .pet-icon span {
+            display: inline-block;
+        }
+        
+        .pet-info h3 {
+            margin: 0;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            text-align: center;
+            color: var(--text-color);
+        }
+        
+        .pet-type {
+            text-align: center;
+            font-style: italic;
+            margin: 5px 0 10px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .pet-stats {
+            margin-bottom: 15px;
+        }
+        
+        .stat {
+            margin-bottom: 8px;
+        }
+        
+        .stat span {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 3px;
+        }
+        
+        .progress {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s, background-color 0.5s;
+        }
+        
+        .pet-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .pet-btn {
+            background-color: var(--tertiary-color);
+            border: none;
+            border-radius: 15px;
+            padding: 5px 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        
+        .pet-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .pet-message {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .pet-message.show {
+            opacity: 1;
+        }
+        
+        /* Animations pour les animaux virtuels */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .bounce {
+            animation: bounce 0.5s ease;
+        }
+        
+        .wiggle {
+            animation: wiggle 0.5s ease;
+        }
+        
+        .pulse {
+            animation: pulse 0.5s ease;
+        }
+        
+        /* Lecteur de musique kawaii */
+        .kawaii-music-player {
+            position: fixed;
+            bottom: 180px; /* Ajusté pour être au-dessus du sol */
+            right: 20px;
+            width: 200px;
+            background-color: white; /* Fond blanc pour mieux ressortir */
+            border: 3px solid var(--accent-color); /* Bordure plus épaisse */
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+            z-index: 1010; /* Au-dessus des autres éléments */
+            padding: 10px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            user-select: none;
+        }
+        
+        .player-handle {
+            height: 15px;
+            background: repeating-linear-gradient(90deg, 
+                var(--accent-color), var(--accent-color) 5px, 
+                var(--secondary-color) 5px, var(--secondary-color) 10px);
+            border-radius: 7px 7px 0 0;
+            margin: -10px -10px 5px -10px;
+            cursor: move;
+        }
+        
+        .player-top {
+            display: flex;
+            align-items: center;
+        }
+        
+        .player-screen {
+            flex: 1;
+            background-color: #dff4ff;
+            border: 2px solid var(--text-color);
+            border-radius: 5px;
+            padding: 8px;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .song-title {
+            color: var(--text-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%; /* Assure que le titre ne déborde pas */
+        }
+        
+        /* Suppression de l'animation marquee qui cause le débordement */
+        
+        .song-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .song-controls button {
+            background: none;
+            border: none;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 3px 6px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 3px;
+        }
+        
+        .song-controls button:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .player-volume {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+        }
+        
+        .player-volume span {
+            font-size: 0.9rem;
+            margin-right: 5px;
+        }
+        
+        .volume-slider {
+            flex: 1;
+            height: 5px;
+            -webkit-appearance: none;
+            appearance: none; /* Ajout de la propriété standard */
+            background: #ddd;
+            border-radius: 2px;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            cursor: pointer;
+        }
+        
+        /* Sélecteur de thème */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            border: 3px solid var(--accent-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1050; /* Au-dessus de tout */
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            pointer-events: auto !important; /* Force les clics à fonctionner */
+            user-select: none;
+        }
+        
+        .theme-switcher:hover {
+            transform: rotate(30deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .theme-options {
+            position: absolute;
+            top: 55px;
+            right: 0;
+            background-color: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            width: 150px; /* Plus large pour plus d'espace */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            pointer-events: auto !important; /* Force les clics à fonctionner */
+        }
+        
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            user-select: none;
+        }
+        
+        .theme-option:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .color-sample {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+        }
+        
+        .theme-show .theme-options {
+            display: flex;
+        }
+        
+        /* Styles pour la section compétences */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .skill-card {
+            background-color: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 20px;
+            width: 220px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        .skill-card h3 {
+            margin: 0 0 10px;
+            color: var(--text-color);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        .skill-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .skill-level {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        
+        .level-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #eee;
+            border: 1px solid var(--accent-color);
+        }
+        
+        .level-dot.filled {
+            background-color: var(--accent-color);
+        }
+        
+        /* Styles pour la section expériences */
+        .experience-timeline {
+            position: relative;
+            margin-top: 30px;
+            padding-left: 30px;
+        }
+        
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-color), var(--secondary-color));
+            border-radius: 1px;
+        }
+        
+        .experience-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 15px;
+            width: 18px;
+            height: 18px;
+            background-color: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .experience-item:hover::before {
+            transform: scale(1.2);
+            background-color: var(--accent-color);
+        }
+        
+        .experience-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+        
+        .experience-content {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .experience-item:hover .experience-content {
+            transform: translateX(5px);
+        }
+        
+        .experience-content h3 {
+            margin: 0 0 5px;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        
+        .experience-place {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        /* Animation pour les messages des animaux */
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(5px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
         }
