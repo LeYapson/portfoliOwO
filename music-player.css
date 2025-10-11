@@ -1,0 +1,102 @@
+/* Lecteur de musique kawaii */
+.kawaii-music-player {
+    position: fixed;
+    bottom: 180px; /* Ajusté pour être au-dessus du sol */
+    right: 20px;
+    width: 200px;
+    background-color: white; /* Fond blanc pour mieux ressortir */
+    border: 3px solid var(--accent-color); /* Bordure plus épaisse */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Ombre prononcée */
+    z-index: 1010; /* Au-dessus des autres éléments */
+    padding: 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem;
+    user-select: none;
+}
+
+.player-handle {
+    height: 15px;
+    background: repeating-linear-gradient(90deg, 
+        var(--accent-color), var(--accent-color) 5px, 
+        var(--secondary-color) 5px, var(--secondary-color) 10px);
+    border-radius: 7px 7px 0 0;
+    margin: -10px -10px 5px -10px;
+    cursor: move;
+}
+
+.player-top {
+    display: flex;
+    align-items: center;
+}
+
+.player-screen {
+    flex: 1;
+    background-color: #dff4ff;
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+    padding: 8px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.song-title {
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* Assure que le titre ne déborde pas */
+}
+
+.song-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.song-controls button {
+    background: none;
+    border: none;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 3px 6px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+}
+
+.song-controls button:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.player-volume {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.player-volume span {
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+
+.volume-slider {
+    flex: 1;
+    height: 5px;
+    -webkit-appearance: none;
+    appearance: none; /* Ajout de la propriété standard */
+    background: #ddd;
+    border-radius: 2px;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    cursor: pointer;
+}

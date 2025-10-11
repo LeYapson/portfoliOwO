@@ -30,7 +30,7 @@
             padding: 2rem;
         }
 
-        /* Background layers (sans effet parallaxe) */
+        /* Background layers avec effet parallaxe */
         .parallax-container {
             position: relative;
             min-height: 100vh; /* hauteur minimale pour couvrir l'écran */
@@ -45,44 +45,31 @@
             width: 100%;
             height: 100%;
             background-repeat: repeat-x;
-            image-rendering: pixelated; /* For crisp pixel-art */
+            image-rendering: pixelated; /* Pour un rendu pixel-art net */
+            will-change: transform; /* Optimisation pour l'animation */
         }
 
         #layer-sky {
             background-image: url('assets/img/ciel.png');
             background-size: cover;
             z-index: -3;
+            width: 100%;
+            height: 100%;
         }
 
         #layer-clouds {
             background-image: url('assets/img/nuage.png');
-            background-position: center 20%;
-            background-size: cover;
+            background-position: center 30%;
+            background-size: 120% auto; /* Plus grand pour couvrir pendant l'animation */
+            background-repeat: repeat-x;
             z-index: -2;
             opacity: 0.9;
         }
 
         /* Sol fixe en bas de la page */
-        #layer-ground {
-            position: fixed; 
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 150px; 
-            background-image: url('assets/img/sol.png');
-            background-position: center bottom;
-            background-size: contain; /* mieux adapté pour l'image de sol */
-            background-repeat: repeat-x; 
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.95;
-        }
+        /* Le style du sol a été retiré du parallax et sera intégré au footer */
 
-        /* when visible, place at natural position */
-        #layer-ground.ground-visible {
-            transform: translate3d(0, 0, 0);
-            opacity: 1;
-        }
+
 
         /* Content area above background layers */
         .content {
@@ -95,7 +82,7 @@
             border: 2px solid var(--accent-color);
             border-radius: 10px; /* bordure plus arrondie */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* ajout d'ombre */
-            margin-bottom: 160px; /* espace en bas pour que le contenu ne soit pas caché par le sol */
+            margin-bottom: 150px; /* espace en bas pour accueillir le sol */
             overflow-y: visible; /* éviter le double scroll */
         }
 
@@ -265,29 +252,79 @@
             /* reduce parallax effect on small screens for UX and performance */
             #layer-sky, #layer-clouds, #layer-ground { transform: translate3d(0,0,0) !important; }
             .content { padding: 30px 12px; }
+            .skills-container { flex-direction: column; align-items: center; }
+            .skill-card { width: 100%; max-width: 280px; }
         }
 
-        /* Cartes de projet */
-        .project {
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background-color: var(--secondary-color);
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            transition: transform 0.3s ease;
-        }
+/* Cartes de projet */
+.project {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background-color: var(--secondary-color);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
 
-        .project:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-        }
+.project::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--tertiary-color));
+}
 
-        .project h3 {
-            margin-top: 0;
-            color: var(--text-color);
-        }
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
 
-        /* Pied de page */
+.project h3 {
+    margin-top: 0;
+    color: var(--text-color);
+    font-family: 'Press Start 2P', 'IBM Plex Mono', monospace;
+    font-size: 1.1rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.tag {
+    background-color: white;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.7rem;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-family: 'IBM Plex Mono', monospace;
+    transition: all 0.3s;
+}
+
+.project-link:hover {
+    background-color: var(--tertiary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}        /* Pied de page */
         footer {
             text-align: center;
             margin-top: 2rem;
@@ -296,6 +333,26 @@
             font-size: 0.8rem;
             color: #666;
             border-top: 1px dashed var(--border-color);
+            margin-bottom: 150px; /* Espace pour le sol */
+        }
+        
+        /* Conteneur pour le sol qui prend toute la largeur */
+        .ground-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .footer-ground {
+            width: 100%;
+            height: 150px;
+            background-image: url('assets/img/sol.png');
+            background-position: bottom center;
+            background-size: auto 100%;
+            background-repeat: repeat-x;
         }
 
         /* Animations UwU */
@@ -319,13 +376,19 @@
             text-shadow: 0 0 5px var(--accent-color);
         }
         
-        /* Styles de la mascotte kawaii */
+        /* Animation pour les éléments flottants */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Styles de la mascotte kawaii - Version corrigée */
         .kawaii-mascot {
             position: fixed;
             bottom: 180px; /* Plus haut pour être au-dessus du sol */
             left: 20px;
-            width: 150px; /* Encore plus grand pour mieux voir les expressions */
-            height: 150px; /* Encore plus grand pour mieux voir les expressions */
+            width: 150px; /* Taille augmentée pour plus d'espace */
+            height: 150px; /* Taille augmentée pour plus d'espace */
             background-color: white; /* Fond blanc pour mieux ressortir */
             border: 3px solid var(--accent-color); /* Bordure plus épaisse */
             border-radius: 50%;
@@ -343,11 +406,14 @@
         }
         
         .mascot-face {
-            font-size: 2.2rem; /* Taille encore augmentée pour les expressions */
-            line-height: 1.2;
+            font-size: 1.6rem; /* Taille réduite pour éviter les débordements */
+            line-height: 1;
             text-align: center;
             transition: transform 0.3s;
-            width: 120px; /* Largeur définie pour éviter les débordements */
+            white-space: nowrap; /* Empêche les retours à la ligne */
+            overflow: hidden; /* Masque tout débordement */
+            text-overflow: ellipsis; /* Ajoute des points de suspension si nécessaire */
+            max-width: 130px; /* Contrôle la largeur maximale */
         }
         
         .mascot-speech-bubble {
@@ -384,6 +450,21 @@
         
         .mascot-speech-bubble.visible {
             opacity: 1;
+        }
+        
+        /* Animations d'émojis flottants (pour l'easter egg) */
+        .floating-emoji {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: floatUp 3s ease-out forwards;
+            z-index: 1000;
+        }
+        
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
         
         @keyframes float {
@@ -501,247 +582,15 @@
             transition: width 0.5s, background-color 0.5s;
         }
         
-        .pet-actions {
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .pet-btn {
-            background-color: var(--tertiary-color);
-            border: none;
-            border-radius: 15px;
-            padding: 5px 8px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.2s;
-        }
-        
-        .pet-btn:hover {
-            background-color: var(--accent-color);
-            color: white;
-            transform: scale(1.05);
-        }
-        
-        .pet-message {
-            margin-top: 10px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #666;
-            font-style: italic;
-            height: 20px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .pet-message.show {
-            opacity: 1;
-        }
-        
-        /* Animations pour les animaux virtuels */
+        /* Animation bounce pour les éléments UwU */
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-5px); }
         }
         
-        @keyframes wiggle {
-            0%, 100% { transform: rotate(0); }
-            25% { transform: rotate(-10deg); }
-            75% { transform: rotate(10deg); }
-        }
+
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-        
-        .bounce {
-            animation: bounce 0.5s ease;
-        }
-        
-        .wiggle {
-            animation: wiggle 0.5s ease;
-        }
-        
-        .pulse {
-            animation: pulse 0.5s ease;
-        }
-        
-        /* Lecteur de musique kawaii */
-        .kawaii-music-player {
-            position: fixed;
-            bottom: 180px; /* Ajusté pour être au-dessus du sol */
-            right: 20px;
-            width: 200px;
-            background-color: white; /* Fond blanc pour mieux ressortir */
-            border: 3px solid var(--accent-color); /* Bordure plus épaisse */
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
-            z-index: 1010; /* Au-dessus des autres éléments */
-            padding: 10px;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.6rem;
-            user-select: none;
-        }
-        
-        .player-handle {
-            height: 15px;
-            background: repeating-linear-gradient(90deg, 
-                var(--accent-color), var(--accent-color) 5px, 
-                var(--secondary-color) 5px, var(--secondary-color) 10px);
-            border-radius: 7px 7px 0 0;
-            margin: -10px -10px 5px -10px;
-            cursor: move;
-        }
-        
-        .player-top {
-            display: flex;
-            align-items: center;
-        }
-        
-        .player-screen {
-            flex: 1;
-            background-color: #dff4ff;
-            border: 2px solid var(--text-color);
-            border-radius: 5px;
-            padding: 8px;
-            height: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .song-title {
-            color: var(--text-color);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%; /* Assure que le titre ne déborde pas */
-        }
-        
-        /* Suppression de l'animation marquee qui cause le débordement */
-        
-        .song-controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-        
-        .song-controls button {
-            background: none;
-            border: none;
-            font-size: 0.8rem;
-            cursor: pointer;
-            color: var(--text-color);
-            padding: 3px 6px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 3px;
-        }
-        
-        .song-controls button:hover {
-            background-color: var(--accent-color);
-            color: white;
-        }
-        
-        .player-volume {
-            display: flex;
-            align-items: center;
-            margin-top: 8px;
-        }
-        
-        .player-volume span {
-            font-size: 0.9rem;
-            margin-right: 5px;
-        }
-        
-        .volume-slider {
-            flex: 1;
-            height: 5px;
-            -webkit-appearance: none;
-            appearance: none; /* Ajout de la propriété standard */
-            background: #ddd;
-            border-radius: 2px;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--accent-color);
-            cursor: pointer;
-        }
-        
-        /* Sélecteur de thème */
-        .theme-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: white;
-            border: 3px solid var(--accent-color);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1050; /* Au-dessus de tout */
-            font-size: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-            pointer-events: auto !important; /* Force les clics à fonctionner */
-            user-select: none;
-        }
-        
-        .theme-switcher:hover {
-            transform: rotate(30deg);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .theme-options {
-            position: absolute;
-            top: 55px;
-            right: 0;
-            background-color: white;
-            border: 2px solid var(--accent-color);
-            border-radius: 10px;
-            padding: 10px;
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            width: 150px; /* Plus large pour plus d'espace */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            pointer-events: auto !important; /* Force les clics à fonctionner */
-        }
-        
-        .theme-option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-            user-select: none;
-        }
-        
-        .theme-option:hover {
-            background-color: #f0f0f0;
-            transform: scale(1.05);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .color-sample {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            border: 1px solid #ccc;
-        }
-        
-        .theme-show .theme-options {
-            display: flex;
-        }
+
         
         /* Styles pour la section compétences */
         .skills-container {
@@ -820,13 +669,20 @@
             top: 10px;
             bottom: 10px;
             width: 2px;
-            background: linear-gradient(to bottom, var(--accent-color), var(--secondary-color));
+            background: linear-gradient(to bottom, var(--accent-color), var(--secondary-color), var(--tertiary-color));
             border-radius: 1px;
+            box-shadow: 0 0 8px rgba(255, 182, 193, 0.3);
+            animation: glowing 2s infinite alternate;
+        }
+        
+        @keyframes glowing {
+            from { opacity: 0.7; }
+            to { opacity: 1; }
         }
         
         .experience-item {
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             padding-left: 20px;
         }
         
@@ -840,12 +696,13 @@
             background-color: white;
             border: 2px solid var(--accent-color);
             border-radius: 50%;
-            transition: transform 0.3s, background-color 0.3s;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
         }
         
         .experience-item:hover::before {
             transform: scale(1.2);
             background-color: var(--accent-color);
+            box-shadow: 0 0 12px var(--accent-color);
         }
         
         .experience-date {
@@ -853,32 +710,179 @@
             font-weight: bold;
             color: var(--accent-color);
             margin-bottom: 5px;
+            display: inline-block;
+            padding: 3px 10px;
+            background-color: rgba(255, 182, 193, 0.1);
+            border-radius: 12px;
         }
         
         .experience-content {
             background-color: white;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .experience-content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--tertiary-color));
         }
         
         .experience-item:hover .experience-content {
-            transform: translateX(5px);
+            transform: translateX(8px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .experience-content h3 {
             margin: 0 0 5px;
-            font-family: 'Comic Neue', cursive;
+            font-family: 'Press Start 2P', 'Comic Neue', cursive;
             font-weight: bold;
             color: var(--text-color);
+            font-size: 0.9rem;
         }
         
         .experience-place {
             font-style: italic;
             color: #666;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .experience-place::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+        
+        .experience-content:hover .experience-place::after {
+            width: 100%;
+        }
+        
+        .experience-skills {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border-color);
+        }
+        
+        .skills-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 5px;
+        }
+        
+        .skill-badge {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        .experience-achievements {
+            margin-top: 12px;
+        }
+        
+        .achievements-toggle {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 3px 0;
+            text-decoration: underline;
+            transition: all 0.2s;
+        }
+        
+        .achievements-toggle:hover {
+            color: var(--tertiary-color);
+            transform: translateY(-2px);
+        }
+        
+        .achievements-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        
+        .achievements-list.hidden {
+            display: none;
+        }
+        
+        .achievement-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .achievement-item::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        /* Style pour les badges de type d'expérience */
+        .experience-type {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-family: 'Press Start 2P', 'IBM Plex Mono', monospace;
+            font-weight: normal;
+            letter-spacing: -0.5px;
+        }
+        
+        .experience-type.professional {
+            background-color: rgba(255, 182, 193, 0.2);
+            color: #d67b89;
+            border: 1px solid #ffb6c1;
+        }
+        
+        .experience-type.project {
+            background-color: rgba(181, 234, 215, 0.2);
+            color: #6baa8f;
+            border: 1px solid #b5ead7;
+        }
+        
+        .experience-type.education {
+            background-color: rgba(226, 209, 249, 0.2);
+            color: #9f84c1;
+            border: 1px solid #e2d1f9;
+        }
+        
+        /* Étoiles décoratives sur la timeline */
+        .timeline-star {
+            position: absolute;
+            left: 0;
+            transform: translateX(-50%);
+            animation: twinkle infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            from { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
+            to { opacity: 0.8; transform: translateX(-50%) scale(1.1); }
         }
         
         /* Animation pour les messages des animaux */

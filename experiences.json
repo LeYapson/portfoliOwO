@@ -1,0 +1,60 @@
+{
+  "experiences": [
+    {
+      "title": "Ingénieur Études et Développement",
+      "company": "Ivalua",
+      "period": "Oct 2024 - Présent",
+      "description": "Développement spécialisé en C#, .NET, et SQL Server.",
+      "skills": ["C#", ".NET", "SQL Server", "Développement backend"],
+      "type": "professional"
+    },
+    {
+      "title": "Mentor Junior Informatique",
+      "company": "Montpellier Ynov Campus",
+      "period": "Fev 2024 - Juin 2024",
+      "description": "Accompagnement et mentorat auprès des étudiants en informatique.",
+      "skills": ["Pédagogie", "Mentorat", "Communication", "Informatique"],
+      "type": "professional"
+    },
+    {
+      "title": "Développeur Web Front-end",
+      "company": "Essential Life Services",
+      "period": "Août 2023 - Sep 2023",
+      "description": "Développement d'interfaces web et intégration front-end.",
+      "skills": ["HTML/CSS", "JavaScript", "React", "UI/UX"],
+      "type": "professional"
+    },
+    {
+      "title": "Fondateur & Organisateur",
+      "company": "THE STAND",
+      "period": "Projet en cours",
+      "description": "Organisation d'événements de rassemblement automobile.",
+      "skills": ["Gestion d'événements", "Community Management", "Marketing", "Communication"],
+      "type": "project"
+    },
+    {
+      "title": "Développeur Indépendant",
+      "company": "Project MS",
+      "period": "Projet en cours",
+      "description": "Développement d'un jeu vidéo JRPG japonais sur Godot Engine.",
+      "skills": ["Godot Engine", "GDScript", "Game Design", "Pixel Art"],
+      "type": "project"
+    },
+    {
+      "title": "Licence Informatique",
+      "company": "Montpellier Ynov Campus",
+      "period": "Sep 2022 - Présent",
+      "description": "Formation complète en développement et technologies informatiques.",
+      "skills": ["Développement Web", "Programmation", "Base de données", "Méthodologies Agile"],
+      "type": "education"
+    },
+    {
+      "title": "Licence en Électronique, Électrotechnique et Automatisation",
+      "company": "Université des Sciences de Montpellier",
+      "period": "Sep 2020 - Juil 2022",
+      "description": "Formation en systèmes électroniques et automatisés.",
+      "skills": ["Électronique", "Électrotechnique", "Automatisation", "Systèmes embarqués"],
+      "type": "education"
+    }
+  ]
+}

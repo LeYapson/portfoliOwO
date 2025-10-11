@@ -8,13 +8,13 @@
     mascot.style.right = 'auto';
     mascot.style.bottom = '180px'; // Au-dessus du sol pour être bien visible
     
-    // États de la mascotte
+    // États de la mascotte - version simplifiée pour éviter les débordements
     const states = {
-        normal: '(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧',
+        normal: '(◕ᴗ◕✿)',
         happy: '(≧◡≦)',
-        excited: '(づ｡◕‿‿◕｡)づ',
-        surprised: '(⊙ω⊙)',
-        sleeping: '(─.─)zzz'
+        excited: '(づ◕◡◕)づ',
+        surprised: '(⊙.⊙)',
+        sleeping: '(ᴗ.ᴗ)zzz'
     };
     
     // État actuel

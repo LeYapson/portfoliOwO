@@ -1,42 +1,44 @@
-// parallax.js - Simplifié sans l'effet de parallaxe
+// parallax.js - Version simplifiée et optimisée
 (() => {
-    // Référence aux éléments du fond, mais sans effet de parallaxe
+    // Référence aux éléments du fond
     const sky = document.getElementById('layer-sky');
     const clouds = document.getElementById('layer-clouds');
-    const ground = document.getElementById('layer-ground');
-    const groundSection = document.getElementById('ground-section');
+    // Le sol n'est plus géré par le parallax
 
-    // Pas de vitesse de parallaxe puisqu'on n'utilise plus cet effet
+    // Différentes vitesses pour chaque calque pour créer l'effet parallaxe
+    const skySpeed = 0.05;    // Le ciel bouge très lentement
+    const cloudsSpeed = 0.15; // Les nuages bougent un peu plus rapidement
+
     let latestScrollY = 0;
     let ticking = false;
 
-    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
-
     function update() {
-        // Aucun effet de parallaxe - les éléments restent fixes
-        if (sky) sky.style.transform = 'none';
-        if (clouds) clouds.style.transform = 'none';
-
-        // Le sol est toujours visible mais sans effet de mouvement
-        if (ground) {
-            ground.style.backgroundPosition = 'center bottom';
-            ground.classList.add('ground-visible');
-        }
+        // Calcul des transformations pour l'effet parallaxe
+        if (sky) sky.style.transform = `translateY(${latestScrollY * skySpeed}px)`;
         
-        // Optionnel : si on veut toujours animer le sol au survol
-        if (groundSection) {
-            groundSection.style.opacity = '1';
-        }
-
-        // optional fade for ground section
-        if (groundSection) {
-            const rect = groundSection.getBoundingClientRect();
-            const visible = clamp((window.innerHeight - rect.top) / window.innerHeight, 0, 1);
-            groundSection.style.opacity = String(visible);
-        }
-
+        // Les nuages déjà animés par la fonction animateClouds
+        
         ticking = false;
     }
+
+    // Animation des nuages indépendante du scroll
+    let cloudPosition = 0;
+    function animateClouds() {
+        if (clouds) {
+            cloudPosition -= 0.2; // Déplacement lent des nuages vers la gauche
+            if (cloudPosition < -window.innerWidth) {
+                cloudPosition = 0; // Revient au début lorsque les nuages sont hors écran
+            }
+            
+            // Combine l'animation automatique avec l'effet parallaxe du scroll
+            const scrollOffset = latestScrollY * cloudsSpeed;
+            clouds.style.transform = `translateX(${cloudPosition + scrollOffset}px)`;
+        }
+        requestAnimationFrame(animateClouds);
+    }
+
+    // Démarre l'animation des nuages
+    animateClouds();
 
     window.addEventListener('scroll', () => {
         latestScrollY = window.scrollY || window.pageYOffset;

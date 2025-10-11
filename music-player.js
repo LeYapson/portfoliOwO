@@ -52,23 +52,35 @@
         isDragging = false;
     });
     
-    // Liste de chansons kawaii (liens vers des musiques libres de droits)
+    // Liste de chansons kawaii (fichiers audio locaux)
     const songs = [
         {
-            title: "Lofi Kawaii Beats",
-            url: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+            title: "Cutie Japan Lofi",
+            url: "assets/sound/cutie-japan-lofi-402355.mp3"
         },
         {
-            title: "Pixel Dreams",
-            url: "https://cdn.pixabay.com/download/audio/2022/10/25/audio_fbd0d1483d.mp3?filename=synthwave-80s-112684.mp3"
+            title: "Good Night Lofi",
+            url: "assets/sound/good-night-lofi-cozy-chill-music-160166.mp3"
         },
         {
-            title: "Pastel Memories",
-            url: "https://cdn.pixabay.com/download/audio/2022/01/18/audio_edb88899e1.mp3?filename=beautiful-piano-111206.mp3"
+            title: "Lofi Study",
+            url: "assets/sound/lofi-study-112191.mp3"
+        },
+        {
+            title: "Lofi Chill",
+            url: "assets/sound/lofi-295209.mp3"
+        },
+        {
+            title: "Peaceful Chill Hop",
+            url: "assets/sound/lofi-study-calm-peaceful-chill-hop-112191.mp3"
+        },
+        {
+            title: "Rainy Lofi City",
+            url: "assets/sound/rainy-lofi-city-lofi-music-332746.mp3"
         }
     ];
     
-    // Créer l'élément audio
+    // Créer l'élément audio de la façon la plus simple possible
     const audio = new Audio();
     audio.loop = false;
     audio.volume = 0.5;
@@ -76,35 +88,86 @@
     let currentSongIndex = 0;
     let isPlaying = false;
     
-    // Fonctions de contrôle
+    // Fonction de contrôle optimisée pour les fichiers audio locaux
     function playSong() {
         const song = songs[currentSongIndex];
-        audio.src = song.src || song.url;
-        audio.play();
-        isPlaying = true;
-        updateDisplay();
+        
+        try {
+            // Réinitialiser l'audio
+            audio.pause();
+            
+            // Afficher un message de chargement
+            const songTitle = player.querySelector('.song-title');
+            songTitle.textContent = `Chargement... ${song.title}`;
+            
+            // Définir la source et charger
+            audio.src = song.url;
+            audio.load(); // Préchargement explicite pour les fichiers locaux
+            
+            // Démarrer la lecture
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        console.log("Lecture démarrée avec succès");
+                        isPlaying = true;
+                        songTitle.textContent = `▶ ${song.title}`;
+                        const btnPlay = player.querySelector('.btn-play');
+                        btnPlay.textContent = '⏸';
+                    })
+                    .catch(error => {
+                        console.error(`Erreur de lecture: ${error}`);
+                        songTitle.textContent = `Erreur: ${song.title}`;
+                        isPlaying = false;
+                    });
+            }
+        } catch (error) {
+            console.error("Erreur inattendue:", error);
+        }
     }
     
     function pauseSong() {
-        audio.pause();
-        isPlaying = false;
-        updateDisplay();
+        try {
+            audio.pause();
+            isPlaying = false;
+            updateDisplay();
+            console.log("Lecture mise en pause");
+        } catch (error) {
+            console.error("Erreur lors de la mise en pause:", error);
+        }
     }
     
     function nextSong() {
+        // Arrêter l'audio actuel
+        audio.pause();
+        
+        // Changer l'index
         currentSongIndex = (currentSongIndex + 1) % songs.length;
+        console.log(`Passage à la chanson suivante: ${songs[currentSongIndex].title}`);
+        
+        // Si la lecture était en cours, démarrer la nouvelle chanson
         if (isPlaying) {
             playSong();
         } else {
+            // Sinon juste mettre à jour l'affichage
             updateDisplay();
         }
     }
     
     function prevSong() {
+        // Arrêter l'audio actuel
+        audio.pause();
+        
+        // Changer l'index
         currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        console.log(`Passage à la chanson précédente: ${songs[currentSongIndex].title}`);
+        
+        // Si la lecture était en cours, démarrer la nouvelle chanson
         if (isPlaying) {
             playSong();
         } else {
+            // Sinon juste mettre à jour l'affichage
             updateDisplay();
         }
     }
@@ -113,10 +176,12 @@
         const songTitle = player.querySelector('.song-title');
         const btnPlay = player.querySelector('.btn-play');
         
+        // Mise à jour simple du titre
         songTitle.textContent = isPlaying ? 
             `▶ ${songs[currentSongIndex].title}` : 
             songs[currentSongIndex].title;
         
+        // Mise à jour du bouton
         btnPlay.textContent = isPlaying ? '⏸' : '▶';
     }
     
@@ -142,10 +207,17 @@
     });
     
     // Lorsque la chanson se termine, passer à la suivante
-    audio.addEventListener('ended', nextSong);
+    audio.addEventListener('ended', function() {
+        console.log("La chanson est terminée, passage à la suivante");
+        // Avancer à la chanson suivante
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        // Jouer la chanson suivante automatiquement
+        playSong();
+    });
     
     // Initialiser l'affichage
     updateDisplay();
+    console.log("Lecteur de musique initialisé avec", songs.length, "chansons");
     
     // Pour le développement - commenter ou supprimer cette ligne pour la production
     // console.log('Lecteur de musique kawaii initialisé');

@@ -1,0 +1,36 @@
+{
+  "projects": [
+    {
+      "title": "RavenWise",
+      "description": "Plateforme éducative interactive avec système d'authentification, tableau de bord personnalisé, et contenu de cours adaptatif.",
+      "emoji": "🦉",
+      "technologies": ["Next.js", "React", "Tailwind CSS", "Firebase"],
+      "features": ["Authentification utilisateur", "Système de cours progressif", "Tableau de bord d'apprentissage", "Design responsive"],
+      "github": "https://github.com/theauyapi/RavenWise_Front"
+    },
+    {
+      "title": "Car With A Gun",
+      "description": "Jeu arcade multijoueur et solo développé avec Godot Engine, où les joueurs contrôlent des voitures armées dans des arènes de combat.",
+      "emoji": "🚗",
+      "technologies": ["Godot Engine", "GDScript", "Networking", "Game Physics"],
+      "features": ["Mode multijoueur en ligne", "Mode solo avec IA", "Personnalisation des véhicules", "Arènes variées"],
+      "github": "https://github.com/theauyapi/Car_With_A_Gun"
+    },
+    {
+      "title": "Codedex Winter Hackathon",
+      "description": "Site web à thème de pêche avec un design inspiré des années 90, créé pour le hackathon d'hiver de Codedex.",
+      "emoji": "🎣",
+      "technologies": ["HTML", "CSS", "JavaScript", "Pixel Art"],
+      "features": ["Design rétro années 90", "Animation de pêche interactive", "Ambiance nostalgique", "Effets visuels pixelisés"],
+      "github": "https://github.com/theauyapi/Codedex-winter-hackaton"
+    },
+    {
+      "title": "Portfolio UwU",
+      "description": "Ce portfolio kawaii avec effets parallaxe, mascotte interactive et lecteur de musique LoFi intégré.",
+      "emoji": "✨",
+      "technologies": ["HTML", "CSS", "JavaScript", "Design kawaii"],
+      "features": ["Effet parallaxe", "Mascotte interactive", "Lecteur de musique LoFi", "Design UwU pastel"],
+      "github": "https://github.com/theauyapi/portfoliOwO"
+    }
+  ]
+}
