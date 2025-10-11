@@ -6,20 +6,20 @@ PortfoliOwO est un site portfolio personnel conçu pour le challenge mensuel Cod
 - Design coloré et mignon avec des éléments kawaii
 - Mise en page responsive pour tous les appareils
 - Navigation facile et interface conviviale
-- Présentation des projets avec descriptions
-- Effet parallaxe pour un défilement unique
+- Présentation des projets avec descriptions détaillées
+- Effet parallaxe pour un défilement unique avec nuages animés
 - Mascotte interactive qui suit le curseur et réagit aux actions
-- Collection d'animaux virtuels à adopter et dont il faut prendre soin
-- Lecteur de musique kawaii déplaçable
-- Sélecteur de thèmes avec plusieurs options pastel
+- Lecteur de musique LoFi déplaçable avec playlist intégrée
+- Section d'expériences professionnelles avec timeline kawaii
+- Section de compétences avec indicateurs de niveau
 - Effets visuels adorables comme la pluie de cœurs pixelisés
 - Easter eggs cachés pour les visiteurs curieux
 
 ## 🌈 Easter Eggs
 - Tapez "uwu" sur votre clavier pour déclencher une explosion d'émojis kawaii
-- Double-cliquez n'importe où pour créer une explosion de cœurs
 - Double-cliquez sur l'avatar pour activer/désactiver la musique d'ambiance
-- Faites défiler rapidement la page pour déclencher une pluie de cœurs pixelisés
+- Interagissez avec la mascotte pour déclencher des messages aléatoires
+- Observez les étoiles scintillantes sur la timeline des expériences
 
 ## 🛠️ Technologies Utilisées
 - HTML5
@@ -27,11 +27,11 @@ PortfoliOwO est un site portfolio personnel conçu pour le challenge mensuel Cod
 - JavaScript (Vanilla JS)
 - Design Responsive
 
-## 🎨 Thèmes
-- **Pastel** - Le thème par défaut avec des tons doux et apaisants
-- **Pastel Nuit** - Un thème sombre avec des tons pastel pour la navigation nocturne
-- **Bonbon** - Des couleurs vives et joyeuses inspirées des sucreries
-- **Pixel Rétro** - Un hommage aux jeux vidéo rétro avec une palette de couleurs plus contrastée
+## 🎨 Style
+- **Design Kawaii** - Un design mignon et adorable avec des tons pastel
+- **Éléments Nostalgiques** - Des éléments visuels inspirés des sites web des années 2000
+- **Effet Scanlines** - Un subtil effet CRT pour renforcer l'ambiance nostalgique
+- **Parallaxe** - Effet de défilement en couches pour une expérience immersive
 
 ## 💻 Installation
 1. Clonez le dépôt: `git clone https://github.com/leyapson/portfoliOwO.git`

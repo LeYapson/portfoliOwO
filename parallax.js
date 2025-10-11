@@ -3,7 +3,6 @@
     // Référence aux éléments du fond
     const sky = document.getElementById('layer-sky');
     const clouds = document.getElementById('layer-clouds');
-    // Le sol n'est plus géré par le parallax
 
     // Différentes vitesses pour chaque calque pour créer l'effet parallaxe
     const skySpeed = 0.05;    // Le ciel bouge très lentement
