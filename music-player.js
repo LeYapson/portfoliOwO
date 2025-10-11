@@ -110,7 +110,7 @@
             if (playPromise !== undefined) {
                 playPromise
                     .then(() => {
-                        console.log("Lecture démarrée avec succès");
+                        // Lecture démarrée avec succès
                         isPlaying = true;
                         songTitle.textContent = `▶ ${song.title}`;
                         const btnPlay = player.querySelector('.btn-play');
@@ -132,7 +132,7 @@
             audio.pause();
             isPlaying = false;
             updateDisplay();
-            console.log("Lecture mise en pause");
+            // Lecture mise en pause
         } catch (error) {
             console.error("Erreur lors de la mise en pause:", error);
         }
@@ -144,7 +144,7 @@
         
         // Changer l'index
         currentSongIndex = (currentSongIndex + 1) % songs.length;
-        console.log(`Passage à la chanson suivante: ${songs[currentSongIndex].title}`);
+        // Passage à la chanson suivante
         
         // Si la lecture était en cours, démarrer la nouvelle chanson
         if (isPlaying) {
@@ -161,7 +161,7 @@
         
         // Changer l'index
         currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-        console.log(`Passage à la chanson précédente: ${songs[currentSongIndex].title}`);
+        // Passage à la chanson précédente
         
         // Si la lecture était en cours, démarrer la nouvelle chanson
         if (isPlaying) {
@@ -208,7 +208,7 @@
     
     // Lorsque la chanson se termine, passer à la suivante
     audio.addEventListener('ended', function() {
-        console.log("La chanson est terminée, passage à la suivante");
+        // La chanson est terminée, passage à la suivante
         // Avancer à la chanson suivante
         currentSongIndex = (currentSongIndex + 1) % songs.length;
         // Jouer la chanson suivante automatiquement
@@ -217,7 +217,7 @@
     
     // Initialiser l'affichage
     updateDisplay();
-    console.log("Lecteur de musique initialisé avec", songs.length, "chansons");
+    // Lecteur de musique initialisé
     
     // Pour le développement - commenter ou supprimer cette ligne pour la production
     // console.log('Lecteur de musique kawaii initialisé');

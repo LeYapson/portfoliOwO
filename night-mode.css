@@ -1,0 +1,41 @@
+/* night-mode.css - Styles spécifiques pour le mode nuit */
+
+/* Style appliqué quand la classe night-mode est active sur le body */
+body.night-mode {
+    transition: background-color 1.5s ease, color 1.5s ease;
+}
+
+/* Animation d'étoiles scintillantes pour le mode nuit */
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 5s infinite alternate;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+    100% { opacity: 0.3; transform: scale(1); }
+}
+
+/* Effet d'assombrissement pour d'autres éléments en mode nuit */
+body.night-mode .content {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode .kawaii-mascot {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Transition douce pour tous les éléments importants */
+.parallax-layer, .content, .kawaii-mascot, .tools-dock {
+    transition: background-color 1.5s ease, 
+                background-image 1.5s ease, 
+                color 1.5s ease,
+                border-color 1.5s ease,
+                box-shadow 1.5s ease;
+}

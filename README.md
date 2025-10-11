@@ -12,13 +12,20 @@ PortfoliOwO est un site portfolio personnel conçu pour le challenge mensuel Cod
 - Lecteur de musique LoFi déplaçable avec playlist intégrée
 - Section d'expériences professionnelles avec timeline kawaii
 - Section de compétences avec indicateurs de niveau
-- Effets visuels adorables comme la pluie de cœurs pixelisés
+- Mode jour/nuit avec palette de couleurs adaptée
+- Compteur de visiteurs kawaii interactif
+- Pèse-émotion pour recueillir les sentiments des visiteurs
+- Effets visuels adorables comme la pluie d'éléments pastel
+- Mini-jeu Space Invaders accessible via le code Konami
 - Easter eggs cachés pour les visiteurs curieux
 
 ## 🌈 Easter Eggs
 - Tapez "uwu" sur votre clavier pour déclencher une explosion d'émojis kawaii
+- Entrez le code Konami (↑↑↓↓←→←→BA) pour accéder au jeu Space Invaders UwU
+- Appuyez sur la touche "P" pour déclencher une pluie d'éléments pastel
 - Double-cliquez sur l'avatar pour activer/désactiver la musique d'ambiance
 - Interagissez avec la mascotte pour déclencher des messages aléatoires
+- Cliquez sur le compteur de visiteurs pour changer l'animal kawaii
 - Observez les étoiles scintillantes sur la timeline des expériences
 
 ## 🛠️ Technologies Utilisées

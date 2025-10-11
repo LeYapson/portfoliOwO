@@ -64,6 +64,8 @@
             background-repeat: repeat-x;
             z-index: -2;
             opacity: 0.9;
+            /* Pour une meilleure transition entre les répétitions d'image */
+            image-rendering: auto; /* Pour un rendu plus lisse des transitions */
         }
 
         /* Sol fixe en bas de la page */
