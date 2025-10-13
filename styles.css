@@ -256,6 +256,23 @@
             .content { padding: 30px 12px; }
             .skills-container { flex-direction: column; align-items: center; }
             .skill-card { width: 100%; max-width: 280px; }
+            /* Hide the mascot on small screens so it doesn't block content */
+            .kawaii-mascot { display: none !important; }
+            /* Make the music player smaller and fixed at bottom-right */
+            .kawaii-music-player {
+                width: 220px !important;
+                height: auto !important;
+                right: 12px !important;
+                left: auto !important;
+                bottom: 12px !important;
+                top: auto !important;
+                transform: none !important;
+                opacity: 0.95 !important;
+                pointer-events: auto !important;
+                touch-action: none; /* prevent accidental drags */
+            }
+            .kawaii-music-player .player-top { display: block; }
+            .kawaii-music-player .player-handle { display: none; }
         }
 
 /* Cartes de projet */

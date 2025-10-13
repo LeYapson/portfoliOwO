@@ -23,34 +23,44 @@
     
     document.body.appendChild(player);
     
-    // Rendre le lecteur déplaçable
+    // Rendre le lecteur déplaçable (uniquement sur devices pointer — pas sur touch pour éviter blocage mobile)
     const handle = player.querySelector('.player-handle');
     let isDragging = false;
     let offsetX, offsetY;
-    
-    handle.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        offsetX = e.clientX - player.getBoundingClientRect().left;
-        offsetY = e.clientY - player.getBoundingClientRect().top;
-    });
-    
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        
-        const x = e.clientX - offsetX;
-        const y = e.clientY - offsetY;
-        
-        // Assurer que le lecteur reste dans la fenêtre
-        const maxX = window.innerWidth - player.offsetWidth;
-        const maxY = window.innerHeight - player.offsetHeight;
-        
-        player.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
-        player.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
-    });
-    
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (!isTouchDevice) {
+        handle.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - player.getBoundingClientRect().left;
+            offsetY = e.clientY - player.getBoundingClientRect().top;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+
+            // Assurer que le lecteur reste dans la fenêtre
+            const maxX = window.innerWidth - player.offsetWidth;
+            const maxY = window.innerHeight - player.offsetHeight;
+
+            player.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+            player.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+    } else {
+        // On mobile : épingler le player en bas-right par défaut
+        player.style.position = 'fixed';
+        player.style.right = '12px';
+        player.style.left = 'auto';
+        player.style.bottom = '12px';
+        player.style.top = 'auto';
+    }
     
     // Liste de chansons kawaii (fichiers audio locaux)
     const songs = [
