@@ -2,6 +2,8 @@
 
 /* Style appliqué quand la classe night-mode est active sur le body */
 body.night-mode {
+    background-color: #1a1a2e !important;
+    color: #e0e0e0 !important;
     transition: background-color 1.5s ease, color 1.5s ease;
 }
 
@@ -22,9 +24,57 @@ body.night-mode {
     100% { opacity: 0.3; transform: scale(1); }
 }
 
-/* Effet d'assombrissement pour d'autres éléments en mode nuit */
+/* Arrière-plans sombres pour le mode nuit */
 body.night-mode .content {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: rgba(30, 30, 50, 0.95) !important;
+    border-color: #4a4a6a !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.night-mode section {
+    background-color: rgba(20, 20, 35, 0.9) !important;
+    border-color: #3a3a5a !important;
+    color: #e0e0e0 !important;
+}
+
+body.night-mode .project {
+    background-color: rgba(25, 25, 40, 0.9) !important;
+    border-color: #4a4a6a !important;
+}
+
+body.night-mode nav a {
+    color: #b8b8d0 !important;
+    border-color: #6a6a8a !important;
+}
+
+body.night-mode nav a:hover {
+    background-color: #6a6a8a !important;
+    color: white !important;
+}
+
+body.night-mode h1, body.night-mode h2, body.night-mode h3 {
+    color: #c8c8e0 !important;
+}
+
+body.night-mode .social-link {
+    background-color: rgba(40, 40, 60, 0.9) !important;
+    border-color: #6a6a8a !important;
+    color: #e0e0e0 !important;
+}
+
+body.night-mode .social-link:hover {
+    background-color: #6a6a8a !important;
+    color: white !important;
+}
+
+body.night-mode .social-link.twitch:hover {
+    background-color: #9146ff !important;
+    border-color: #9146ff !important;
+}
+
+body.night-mode .social-link.github:hover {
+    background-color: #333 !important;
+    border-color: #333 !important;
 }
 
 body.night-mode .kawaii-mascot {
