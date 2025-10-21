@@ -23,14 +23,20 @@
     
     // Fonction pour ajouter un outil au dock
     window.addToolToDock = function(icon, tooltip, onClick, id = null) {
-        const toolButton = document.createElement('div');
+        const toolButton = document.createElement('button');
         toolButton.className = 'tool-button';
         if (id) toolButton.id = id;
+        
+        // Accessibilité
+        toolButton.setAttribute('aria-label', tooltip);
+        toolButton.setAttribute('title', tooltip);
+        toolButton.setAttribute('type', 'button');
         
         toolButton.style.width = '40px';
         toolButton.style.height = '40px';
         toolButton.style.borderRadius = '50%';
         toolButton.style.backgroundColor = 'white';
+        toolButton.style.border = 'none';
         toolButton.style.display = 'flex';
         toolButton.style.alignItems = 'center';
         toolButton.style.justifyContent = 'center';
