@@ -9,15 +9,16 @@
             <div class="player-screen">
                 <div class="song-title">Aucune musique</div>
                 <div class="song-controls">
-                    <button class="btn-prev">⏮</button>
-                    <button class="btn-play">▶</button>
-                    <button class="btn-next">⏭</button>
+                    <button class="btn-prev" aria-label="Chanson précédente">⏮</button>
+                    <button class="btn-play" aria-label="Lecture/Pause">▶</button>
+                    <button class="btn-next" aria-label="Chanson suivante">⏭</button>
                 </div>
             </div>
         </div>
         <div class="player-volume">
+            <label for="volume-slider" class="sr-only">Volume de la musique</label>
             <span>🔊</span>
-            <input type="range" min="0" max="100" value="50" class="volume-slider">
+            <input type="range" min="0" max="100" value="50" class="volume-slider" id="volume-slider" aria-label="Contrôle du volume">
         </div>
     `;
     

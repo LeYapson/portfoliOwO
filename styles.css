@@ -102,6 +102,49 @@
             overflow-y: visible; /* éviter le double scroll */
         }
 
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .tagline, footer, .stat span, .skill-card p, .experience-place {
+                color: #000000 !important;
+            }
+            
+            body.night-mode .tagline, 
+            body.night-mode footer, 
+            body.night-mode .stat span, 
+            body.night-mode .skill-card p, 
+            body.night-mode .experience-place {
+                color: #ffffff !important;
+            }
+        }
+
+        /* Focus visible improvements */
+        a:focus-visible, button:focus-visible, input:focus-visible, [role="button"]:focus-visible {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         /* En-tête */
         header {
             text-align: center;
@@ -190,7 +233,7 @@
 
         .tagline {
             font-style: italic;
-            color: #666;
+            color: #4a4a4a; /* Improved contrast from #666 */
         }
 
         /* Navigation */
@@ -357,13 +400,15 @@
 /* Cartes de projet */
 .project {
     margin: 1.5rem 0;
-    padding: 1.5rem;
+    padding: 0;
     background-color: var(--secondary-color);
     border: 2px solid var(--border-color);
     border-radius: 10px;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .project::before {
@@ -379,6 +424,31 @@
 .project:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-content {
+    padding: 1.5rem;
 }
 
 .project h3 {
@@ -429,7 +499,7 @@
             padding: 1rem;
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.8rem;
-            color: #666;
+            color: #4a4a4a; /* Improved contrast from #666 */
             border-top: 1px dashed var(--border-color);
             margin-bottom: 150px; /* Espace pour le sol */
         }
@@ -885,7 +955,7 @@
         
         .stat span {
             font-size: 0.9rem;
-            color: #666;
+            color: #4a4a4a; /* Improved contrast from #666 */
         }
         
         .progress-bar {
@@ -952,7 +1022,7 @@
         
         .skill-card p {
             font-size: 0.9rem;
-            color: #666;
+            color: #4a4a4a; /* Improved contrast from #666 */
             margin-bottom: 15px;
         }
         
@@ -1072,7 +1142,7 @@
         
         .experience-place {
             font-style: italic;
-            color: #666;
+            color: #4a4a4a; /* Improved contrast from #666 */
             margin-bottom: 12px;
             font-size: 0.9rem;
             display: inline-block;

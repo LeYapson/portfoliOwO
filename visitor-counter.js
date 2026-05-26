@@ -28,10 +28,14 @@
     
     // HTML interne du popup
     counterPopup.innerHTML = `
-        <div class="counter-icon" style="margin-bottom: 10px; font-size: 2rem; animation: bounce 2s infinite;">🐱</div>
+        <div class="counter-icon" style="margin-bottom: 10px; font-size: 2rem; animation: bounce 2s infinite; cursor: pointer;" 
+             role="button" 
+             tabindex="0" 
+             aria-label="Changer l'émoji du compteur"
+             title="Cliquez pour changer l'émoji">🐱</div>
         <div class="counter-text">
             <div style="font-size: 0.9rem; margin-bottom: 5px;">Tu es le visiteur n°</div>
-            <div class="counter-number" style="font-weight: bold; font-family: 'Press Start 2P', monospace; font-size: 1.2rem; margin: 5px 0;">0</div>
+            <div class="counter-number" style="font-weight: bold; font-family: 'Press Start 2P', monospace; font-size: 1.2rem; margin: 5px 0;" aria-live="polite">0</div>
             <div style="font-size: 0.8rem; margin-top: 5px;">Merci de ta visite! ✨</div>
         </div>
     `;
@@ -146,9 +150,10 @@
     }
     
     // Easter egg: en cliquant sur l'icône, changer l'émoji
-    counterPopup.querySelector('.counter-icon').addEventListener('click', () => {
+    const counterIcon = counterPopup.querySelector('.counter-icon');
+    
+    function changeEmoji() {
         currentEmojiIndex = (currentEmojiIndex + 1) % emojis.length;
-        const counterIcon = counterPopup.querySelector('.counter-icon');
         
         // Effet de rotation lors du changement
         counterIcon.style.transition = 'transform 0.3s';
@@ -158,5 +163,15 @@
             counterIcon.textContent = emojis[currentEmojiIndex];
             counterIcon.style.transform = 'rotateY(0deg)';
         }, 150);
+    }
+    
+    counterIcon.addEventListener('click', changeEmoji);
+    
+    // Support du clavier
+    counterIcon.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            changeEmoji();
+        }
     });
 })();

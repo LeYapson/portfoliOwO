@@ -124,14 +124,18 @@
     
     // Remplir les options d'humeur
     moods.forEach(mood => {
-        const option = document.createElement('div');
+        const option = document.createElement('button');
         option.className = 'mood-option';
         option.setAttribute('data-mood', mood.name);
+        option.setAttribute('aria-label', `Sélectionner l'humeur ${mood.name}`);
+        option.setAttribute('title', mood.name);
+        option.setAttribute('type', 'button');
         option.style.width = '45px';
         option.style.height = '45px';
         option.style.borderRadius = '50%';
         option.style.backgroundColor = mood.bgColor;
         option.style.color = mood.color;
+        option.style.border = 'none';
         option.style.display = 'flex';
         option.style.alignItems = 'center';
         option.style.justifyContent = 'center';
