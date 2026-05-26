@@ -33,9 +33,108 @@ body.night-mode .kawaii-mascot {
 
 /* Transition douce pour tous les éléments importants */
 .parallax-layer, .content, .kawaii-mascot, .tools-dock {
-    transition: background-color 1.5s ease, 
-                background-image 1.5s ease, 
+    transition: background-color 1.5s ease,
+                background-image 1.5s ease,
                 color 1.5s ease,
                 border-color 1.5s ease,
                 box-shadow 1.5s ease;
+}
+
+/* ---------------------------------------------------------------------------
+   Overrides nuit : neutraliser les fonds blancs codés en dur dans styles.css
+   et tools-dock.js, sinon seul l'arrière-plan de la page devient sombre.
+   --------------------------------------------------------------------------- */
+:root {
+    --panel-bg: rgba(255, 255, 255, 0.95);
+    --panel-bg-soft: rgba(255, 255, 255, 0.7);
+    --card-bg: #ffffff;
+    --muted-text: #666666;
+}
+
+body.night-mode {
+    --panel-bg: rgba(30, 42, 56, 0.92);
+    --panel-bg-soft: rgba(30, 42, 56, 0.6);
+    --card-bg: #25344a;
+    --muted-text: #b9a59e;
+}
+
+body.night-mode .content,
+body.night-mode section {
+    background-color: var(--panel-bg);
+    color: var(--text-color);
+}
+
+body.night-mode nav a {
+    background-color: var(--panel-bg-soft);
+}
+
+body.night-mode .tag,
+body.night-mode .skill-card,
+body.night-mode .experience-content,
+body.night-mode .pet-card,
+body.night-mode .mascot-speech-bubble,
+body.night-mode .kawaii-mascot {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+body.night-mode .experience-item::before {
+    background-color: var(--card-bg);
+}
+
+body.night-mode .skill-card h3,
+body.night-mode .experience-content h3,
+body.night-mode .project h3,
+body.night-mode .pet-info h3 {
+    color: var(--text-color);
+}
+
+body.night-mode .tagline,
+body.night-mode footer,
+body.night-mode .pet-type,
+body.night-mode .experience-place,
+body.night-mode .skill-card p {
+    color: var(--muted-text);
+}
+
+body.night-mode h1 {
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.6), 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .tools-dock {
+    background-color: rgba(30, 42, 56, 0.7) !important;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.night-mode .tools-dock .tool-button {
+    background-color: #2c3d56 !important;
+    color: #f5e6df;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.night-mode footer .social-link,
+body.night-mode .twitch-badge,
+body.night-mode .now-line {
+    background-color: var(--panel-bg-soft);
+    color: var(--text-color);
+}
+
+body.night-mode .testimonial-card,
+body.night-mode .guestbook-entry,
+body.night-mode .guestbook-form input,
+body.night-mode .contact-form input,
+body.night-mode .contact-form textarea {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+body.night-mode .cv-download {
+    background-color: #2c3d56;
+    color: var(--text-color);
+}
+
+/* Effet "scanlines" trop sombre par dessus le mode nuit -> on l'allège */
+body.night-mode .scanlines {
+    mix-blend-mode: screen;
+    opacity: 0.15;
 }

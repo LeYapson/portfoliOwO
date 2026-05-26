@@ -54,8 +54,9 @@
                 launchSpaceInvaders();
             }
         } else {
-            // Réinitialiser en cas d'erreur
-            konamiCodePosition = 0;
+            // Réinitialiser en cas d'erreur, mais re-tester la touche actuelle
+            // contre le début de la séquence (sinon ↑↑↑↓↓... casse à jamais).
+            konamiCodePosition = (key.toLowerCase() === konamiCode[0].toLowerCase()) ? 1 : 0;
         }
     });
     

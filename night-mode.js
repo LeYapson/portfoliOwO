@@ -22,6 +22,13 @@
     
     waitForToolsDock(() => {
         nightModeIcon = window.addToolToDock('🌙', 'Mode nuit', toggleNightMode, 'night-mode-toggle');
+
+        // Appliquer la préférence stockée une fois que l'icône existe.
+        // (Le script est chargé en `defer` donc DOMContentLoaded peut déjà
+        // être passé ; on déclenche directement le bascule ici.)
+        if (localStorage.getItem('nightMode') === 'true') {
+            toggleNightMode();
+        }
     });
     
     // Variables pour suivre l'état du mode
@@ -163,15 +170,4 @@
         stars.forEach(star => star.remove());
     }
     
-    // Attacher l'événement au clic
-    nightModeIcon.addEventListener('click', toggleNightMode);
-    
-    // Vérifier et appliquer la préférence stockée
-    document.addEventListener('DOMContentLoaded', () => {
-        const storedPreference = localStorage.getItem('nightMode');
-        if (storedPreference === 'true') {
-            // Déjà en mode nuit, donc on doit basculer pour appliquer
-            toggleNightMode();
-        }
-    });
 })();

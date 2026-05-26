@@ -10,7 +10,10 @@
     counterPopup.style.position = 'fixed';
     counterPopup.style.top = '80px';
     counterPopup.style.right = '20px';
-    counterPopup.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+    // Utilise la variable CSS définie dans night-mode.css pour s'adapter
+    // automatiquement au mode jour/nuit.
+    counterPopup.style.backgroundColor = 'var(--panel-bg, rgba(255, 255, 255, 0.95))';
+    counterPopup.style.color = 'var(--text-color)';
     counterPopup.style.padding = '15px';
     counterPopup.style.borderRadius = '15px';
     counterPopup.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.2)';
@@ -65,7 +68,7 @@
     
     // Ajouter le bouton au dock
     waitForToolsDock(() => {
-        const counterIcon = window.addToolToDock('📊', 'Statistiques', toggleCounterPopup, 'visitor-counter-btn');
+        window.addToolToDock('📊', 'Statistiques', toggleCounterPopup, 'visitor-counter-btn');
     });
     
     // Fonction pour simuler l'incrémentation du nombre
@@ -105,22 +108,21 @@
         // Dans un vrai site, vous utiliseriez une API ou un service de comptage
         // Pour l'exemple, nous allons simuler avec localStorage et générer un nombre aléatoire initial
         
-        let count = localStorage.getItem('visitorCount');
-        
-        if (!count) {
+        let count = parseInt(localStorage.getItem('visitorCount'), 10);
+
+        if (!count || Number.isNaN(count)) {
             // Premier visiteur, générer un nombre aléatoire entre 1000 et 5000
             count = Math.floor(Math.random() * 4001) + 1000;
-        } else {
-            // Convertir en nombre
-            count = parseInt(count, 10);
         }
-        
-        // Incrémenter le compteur
-        count += 1;
-        
-        // Sauvegarder la nouvelle valeur
-        localStorage.setItem('visitorCount', count.toString());
-        
+
+        // N'incrémenter qu'une fois par session : sinon un simple F5
+        // ferait grimper le compteur indéfiniment pour le même visiteur.
+        if (!sessionStorage.getItem('visitorCounted')) {
+            count += 1;
+            localStorage.setItem('visitorCount', count.toString());
+            sessionStorage.setItem('visitorCounted', '1');
+        }
+
         return count;
     }
     

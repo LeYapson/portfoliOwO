@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — chaton perdu | Théau Yapi</title>
+    <link rel="icon" type="image/png" href="assets/img/avatar.png">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=IBM+Plex+Mono:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="night-mode.css">
+    <style>
+        .lost-screen {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            font-family: 'Comic Neue', cursive;
+        }
+        .lost-screen h1 {
+            font-family: 'Press Start 2P', monospace;
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin: 0.5em 0;
+            text-shadow: 2px 2px 0 rgba(255,255,255,0.8), 4px 4px 0 rgba(0,0,0,0.1);
+        }
+        .lost-cat {
+            font-size: 5rem;
+            line-height: 1;
+            animation: wiggle 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50%      { transform: rotate(5deg); }
+        }
+        .lost-screen p { max-width: 520px; font-size: 1rem; }
+        .lost-screen a.home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 22px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 22px;
+            font-family: 'IBM Plex Mono', monospace;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .lost-screen a.home:hover {
+            transform: translateY(-3px);
+            background-color: var(--tertiary-color);
+        }
+        .lost-code {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            opacity: 0.5;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax-container">
+        <div class="parallax-layer" id="layer-sky"></div>
+        <div class="parallax-layer" id="layer-clouds"></div>
+
+        <div class="lost-screen content pixel-border">
+            <span class="lost-cat" aria-hidden="true">🐱</span>
+            <h1>404</h1>
+            <p>
+                Oups… ce chaton s'est perdu dans le pixel-art. La page que tu cherches
+                n'existe pas (ou plus). Reviens à la maison, on t'attend avec des cookies ! 🍪
+            </p>
+            <a href="/" class="home">← retour à l'accueil</a>
+            <p class="lost-code">ERR_PAGE_NOT_FOUND // (=^･ω･^=)</p>
+        </div>
+    </div>
+    <div class="ground-container">
+        <div class="footer-ground"></div>
+    </div>
+    <div class="scanlines" aria-hidden="true"></div>
+</body>
+</html>

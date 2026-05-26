@@ -3,7 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Théau Yapi | Portfolio Parallaxe</title>
+    <title data-i18n="meta.title">Théau Yapi | Portfolio Parallaxe</title>
+
+    <!-- SEO -->
+    <meta name="description" data-i18n-content="meta.description" content="Portfolio kawaii pastel de Théau Yapi — développeur, streamer et organisateur d'événements. Projets, expériences et easter eggs rétro.">
+    <meta name="author" content="Théau Yapi">
+    <meta name="theme-color" content="#ffb6c1">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Théau Yapi | Portfolio Parallaxe">
+    <meta property="og:description" content="Un petit coin d'internet pastel et rétro — projets, expériences et easter eggs.">
+    <meta property="og:image" content="assets/img/avatar.png">
+    <meta property="og:url" content="https://leyapson.github.io/portfoliOwO/">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Théau Yapi | Portfolio Parallaxe">
+    <meta name="twitter:description" content="Un petit coin d'internet pastel et rétro — projets, expériences et easter eggs.">
+    <meta name="twitter:image" content="assets/img/avatar.png">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/img/avatar.png">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -22,24 +42,40 @@
     <div class="content pixel-border">
             <!-- En-tête (repris de ton HTML original) -->
             <header>
-                <img src="assets/img/avatar.png" alt="Mon avatar pastel" class="avatar">
-                <h1>théau yapi <span class="uwu">(◕‿◕✿)</span></h1>
-                <p class="tagline">développeur · streamer · organisateur d'événements</p>
+                <a href="https://linktree.yatokishi.com" target="_blank" rel="noopener" class="avatar-link" title="Tous mes liens">
+                    <img src="assets/img/avatar.png" alt="Mon avatar pastel" class="avatar" loading="lazy">
+                </a>
+                <h1 data-i18n="title">théau yapi <span class="uwu">(◕‿◕✿)</span></h1>
+                <p class="tagline" data-i18n="tagline">développeur · streamer · organisateur d'événements</p>
+
+                <!-- Badge de statut Twitch (rempli par twitch-status.js) -->
+                <a id="twitch-status" href="https://twitch.tv/yatokishi" target="_blank" rel="noopener" class="twitch-badge offline" title="Statut Twitch">
+                    <span class="twitch-dot"></span>
+                    <span class="twitch-label">offline</span>
+                </a>
+
+                <!-- Ligne "Now" : ce sur quoi je travaille en ce moment -->
+                <p class="now-line" data-i18n="now">
+                    <span class="now-tag">🌱 now</span>
+                    Je code un JRPG sur Godot et j'organise les prochains rassemblements THE STAND.
+                </p>
             </header>
 
             <!-- Navigation -->
-            <nav>
-                <a href="#about">à propos</a>
-                <a href="#projects">projets</a>
-                <a href="#skills">compétences</a>
-                <a href="#experiences">expériences</a>
-                <a href="#contact">contact</a>
+            <nav id="primary-nav">
+                <a href="#about" data-i18n="nav.about">à propos</a>
+                <a href="#projects" data-i18n="nav.projects">projets</a>
+                <a href="#skills" data-i18n="nav.skills">compétences</a>
+                <a href="#experiences" data-i18n="nav.experiences">expériences</a>
+                <a href="#testimonials" data-i18n="nav.testimonials">témoignages</a>
+                <a href="#guestbook" data-i18n="nav.guestbook">livre d'or</a>
+                <a href="#contact" data-i18n="nav.contact">contact</a>
             </nav>
 
             <!-- Section "À propos" -->
             <section id="about">
-                <h2>&gt; à propos de moi &lt;</h2>
-                <p>
+                <h2 data-i18n="about.title">&gt; à propos de moi &lt;</h2>
+                <p data-i18n="about.body">
                     Salut ! Je m'appelle Théau, je suis un développeur passionné par les jeux vidéo, les communautés en ligne et les voitures.
                     <br><br>
                     Ce portfolio est un mélange de <strong>nostalgie des années 2000</strong> et de <strong>douceur pastel</strong>, comme mes streams et mes projets.
@@ -50,63 +86,63 @@
 
             <!-- Section "Projets" -->
             <section id="projects">
-                <h2>&gt; mes projets <span class="uwu">(・∀・)</span> &lt;&lt;</h2>
+                <h2 data-i18n="projects.title">&gt; mes projets <span class="uwu">(・∀・)</span> &lt;&lt;</h2>
 
                 <div class="project">
                     <h3>🦉 RavenWise</h3>
-                    <p>Plateforme éducative interactive avec système d'authentification, tableau de bord personnalisé et contenu de cours adaptatif. Développé avec Next.js et React.</p>
+                    <p data-i18n="projects.ravenwise">Plateforme éducative interactive avec système d'authentification, tableau de bord personnalisé et contenu de cours adaptatif. Développé avec Next.js et React.</p>
                     <div class="project-tags">
                         <span class="tag">Next.js</span>
                         <span class="tag">React</span>
                         <span class="tag">Firebase</span>
                     </div>
-                    <a href="https://github.com/leyapson/RavenWise_Front" target="_blank" class="project-link">Voir sur GitHub</a>
+                    <a href="https://github.com/leyapson/RavenWise_Front" target="_blank" class="project-link" data-i18n="projects.viewGithub">Voir sur GitHub</a>
                 </div>
 
                 <div class="project">
                     <h3>🚗 Car With A Gun</h3>
-                    <p>Jeu arcade multijoueur et solo développé avec Godot Engine, où les joueurs contrôlent des voitures armées dans des arènes de combat palpitantes.</p>
+                    <p data-i18n="projects.cwag">Jeu arcade multijoueur et solo développé avec Godot Engine, où les joueurs contrôlent des voitures armées dans des arènes de combat palpitantes.</p>
                     <div class="project-tags">
                         <span class="tag">Godot</span>
                         <span class="tag">GDScript</span>
                         <span class="tag">Game Dev</span>
                     </div>
-                    <a href="https://github.com/leyapson/Car_With_A_Gun" target="_blank" class="project-link">Voir sur GitHub</a>
+                    <a href="https://github.com/leyapson/Car_With_A_Gun" target="_blank" class="project-link" data-i18n="projects.viewGithub">Voir sur GitHub</a>
                 </div>
 
                 <div class="project">
                     <h3>🎣 Codedex Winter Hackathon</h3>
-                    <p>Site web à thème de pêche avec un design inspiré des années 90, créé pour le hackathon d'hiver de Codedex avec des animations rétro.</p>
+                    <p data-i18n="projects.codedex">Site web à thème de pêche avec un design inspiré des années 90, créé pour le hackathon d'hiver de Codedex avec des animations rétro.</p>
                     <div class="project-tags">
                         <span class="tag">HTML</span>
                         <span class="tag">CSS</span>
                         <span class="tag">Pixel Art</span>
                     </div>
-                    <a href="https://github.com/leyapson/Codedex-winter-hackaton" target="_blank" class="project-link">Voir sur GitHub</a>
+                    <a href="https://github.com/leyapson/Codedex-winter-hackaton" target="_blank" class="project-link" data-i18n="projects.viewGithub">Voir sur GitHub</a>
                 </div>
 
                 <div class="project">
                     <h3>✨ Portfolio UwU</h3>
-                    <p>Ce site même ! Un hommage aux sites persos des années 2000, revisité en pastel avec effets parallaxe, mascotte interactive et lecteur de musique LoFi.</p>
+                    <p data-i18n="projects.uwu">Ce site même ! Un hommage aux sites persos des années 2000, revisité en pastel avec effets parallaxe, mascotte interactive et lecteur de musique LoFi.</p>
                     <div class="project-tags">
                         <span class="tag">HTML</span>
                         <span class="tag">CSS</span>
                         <span class="tag">JavaScript</span>
                     </div>
-                    <a href="https://github.com/leyapson/portfoliOwO" target="_blank" class="project-link">Voir sur GitHub</a>
+                    <a href="https://github.com/leyapson/portfoliOwO" target="_blank" class="project-link" data-i18n="projects.viewGithub">Voir sur GitHub</a>
                 </div>
             </section>
             
             <!-- Section "Compétences" -->
             <section id="skills">
-                <h2>&gt; mes compétences <span class="uwu">(≧◡≦)</span> &lt;&lt;</h2>
-                <p>Développeur passionné avec une appétence pour le design et l'UX. Voici les domaines dans lesquels j'excelle :</p>
-                
+                <h2 data-i18n="skills.title">&gt; mes compétences <span class="uwu">(≧◡≦)</span> &lt;&lt;</h2>
+                <p data-i18n="skills.intro">Développeur passionné avec une appétence pour le design et l'UX. Voici les domaines dans lesquels j'excelle :</p>
+
                 <div class="skills-container">
                     <div class="skill-card">
                         <div class="skill-icon">🖥️</div>
-                        <h3>Frontend Developer</h3>
-                        <p>Création d'interfaces interactives et responsives avec React, Vue.js et les technologies modernes du web.</p>
+                        <h3 data-i18n="skills.frontend.title">Frontend Developer</h3>
+                        <p data-i18n="skills.frontend.body">Création d'interfaces interactives et responsives avec React, Vue.js et les technologies modernes du web.</p>
                         <div class="skill-level">
                             <div class="level-dot filled"></div>
                             <div class="level-dot filled"></div>
@@ -118,8 +154,8 @@
                     
                     <div class="skill-card">
                         <div class="skill-icon">⚙️</div>
-                        <h3>Backend Developer</h3>
-                        <p>Développement d'API RESTful et d'applications serveur robustes avec Node.js, Express et Python.</p>
+                        <h3 data-i18n="skills.backend.title">Backend Developer</h3>
+                        <p data-i18n="skills.backend.body">Développement d'API RESTful et d'applications serveur robustes avec Node.js, Express et Python.</p>
                         <div class="skill-level">
                             <div class="level-dot filled"></div>
                             <div class="level-dot filled"></div>
@@ -131,8 +167,8 @@
                     
                     <div class="skill-card">
                         <div class="skill-icon">🎨</div>
-                        <h3>UI/UX Design</h3>
-                        <p>Conception d'expériences utilisateur intuitives et d'interfaces visuellement attrayantes.</p>
+                        <h3 data-i18n="skills.uiux.title">UI/UX Design</h3>
+                        <p data-i18n="skills.uiux.body">Conception d'expériences utilisateur intuitives et d'interfaces visuellement attrayantes.</p>
                         <div class="skill-level">
                             <div class="level-dot filled"></div>
                             <div class="level-dot filled"></div>
@@ -144,8 +180,8 @@
                     
                     <div class="skill-card">
                         <div class="skill-icon">🎮</div>
-                        <h3>Game Development</h3>
-                        <p>Création de jeux et prototypes avec Unity, avec une passion particulière pour la conception de mécaniques de jeu.</p>
+                        <h3 data-i18n="skills.gamedev.title">Game Development</h3>
+                        <p data-i18n="skills.gamedev.body">Création de jeux et prototypes avec Unity, avec une passion particulière pour la conception de mécaniques de jeu.</p>
                         <div class="skill-level">
                             <div class="level-dot filled"></div>
                             <div class="level-dot filled"></div>
@@ -159,91 +195,156 @@
 
             <!-- Section "Expériences" -->
             <section id="experiences">
-                <h2>&gt; expériences <span class="uwu">(⌐■_■)</span> &lt;&lt;</h2>
-                
+                <h2 data-i18n="experiences.title">&gt; expériences <span class="uwu">(⌐■_■)</span> &lt;&lt;</h2>
+
                 <div class="experience-timeline">
                     <div class="experience-item">
-                        <div class="experience-date">Oct 2024 - Présent</div>
+                        <div class="experience-date" data-i18n="exp.ivalua.date">Oct 2024 - Présent</div>
                         <div class="experience-content">
-                            <h3>Ingénieur Études et Développement</h3>
+                            <h3 data-i18n="exp.ivalua.title">Ingénieur Études et Développement</h3>
                             <p class="experience-place">Ivalua</p>
-                            <p>Développement spécialisé en C#, .NET, et SQL Server.</p>
+                            <p data-i18n="exp.ivalua.body">Développement spécialisé en C#, .NET, et SQL Server.</p>
                         </div>
                     </div>
-                    
+
                     <div class="experience-item">
-                        <div class="experience-date">Fev 2024 - Juin 2024</div>
+                        <div class="experience-date" data-i18n="exp.mentor.date">Fev 2024 - Juin 2024</div>
                         <div class="experience-content">
-                            <h3>Mentor Junior Informatique</h3>
+                            <h3 data-i18n="exp.mentor.title">Mentor Junior Informatique</h3>
                             <p class="experience-place">Montpellier Ynov Campus</p>
-                            <p>Accompagnement et mentorat auprès des étudiants en informatique.</p>
+                            <p data-i18n="exp.mentor.body">Accompagnement et mentorat auprès des étudiants en informatique.</p>
                         </div>
                     </div>
-                    
+
                     <div class="experience-item">
-                        <div class="experience-date">Août 2023 - Sep 2023</div>
+                        <div class="experience-date" data-i18n="exp.els.date">Août 2023 - Sep 2023</div>
                         <div class="experience-content">
-                            <h3>Développeur Web Front-end</h3>
+                            <h3 data-i18n="exp.els.title">Développeur Web Front-end</h3>
                             <p class="experience-place">Essential Life Services</p>
-                            <p>Développement d'interfaces web et intégration front-end.</p>
+                            <p data-i18n="exp.els.body">Développement d'interfaces web et intégration front-end.</p>
                         </div>
                     </div>
-                    
+
                     <div class="experience-item">
-                        <div class="experience-date">Sep 2022 - Présent</div>
+                        <div class="experience-date" data-i18n="exp.ynov.date">Sep 2022 - Présent</div>
                         <div class="experience-content">
-                            <h3>Licence Informatique</h3>
+                            <h3 data-i18n="exp.ynov.title">Licence Informatique</h3>
                             <p class="experience-place">Montpellier Ynov Campus</p>
-                            <p>Formation complète en développement et technologies informatiques.</p>
+                            <p data-i18n="exp.ynov.body">Formation complète en développement et technologies informatiques.</p>
                         </div>
                     </div>
-                    
+
                     <div class="experience-item">
-                        <div class="experience-date">Sep 2020 - Juil 2022</div>
+                        <div class="experience-date" data-i18n="exp.eea.date">Sep 2020 - Juil 2022</div>
                         <div class="experience-content">
-                            <h3>Licence en Électronique, Électrotechnique et Automatisation</h3>
+                            <h3 data-i18n="exp.eea.title">Licence en Électronique, Électrotechnique et Automatisation</h3>
                             <p class="experience-place">Université des Sciences de Montpellier</p>
-                            <p>Formation en systèmes électroniques et automatisés.</p>
+                            <p data-i18n="exp.eea.body">Formation en systèmes électroniques et automatisés.</p>
                         </div>
                     </div>
-                    
+
                     <div class="experience-item">
-                        <div class="experience-date">Projet en cours</div>
+                        <div class="experience-date" data-i18n="exp.ongoing">Projet en cours</div>
                         <div class="experience-content">
-                            <h3>Fondateur & Organisateur</h3>
+                            <h3 data-i18n="exp.thestand.title">Fondateur & Organisateur</h3>
                             <p class="experience-place">THE STAND</p>
-                            <p>Organisation d'événements de rassemblement automobile.</p>
+                            <p data-i18n="exp.thestand.body">Organisation d'événements de rassemblement automobile.</p>
                         </div>
                     </div>
-                    
+
                     <div class="experience-item">
-                        <div class="experience-date">Projet en cours</div>
+                        <div class="experience-date" data-i18n="exp.ongoing">Projet en cours</div>
                         <div class="experience-content">
-                            <h3>Développeur Indépendant</h3>
+                            <h3 data-i18n="exp.projectms.title">Développeur Indépendant</h3>
                             <p class="experience-place">Project MS</p>
-                            <p>Développement d'un jeu vidéo JRPG japonais sur Godot Engine.</p>
+                            <p data-i18n="exp.projectms.body">Développement d'un jeu vidéo JRPG japonais sur Godot Engine.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- Section "Témoignages" -->
+            <section id="testimonials">
+                <h2 data-i18n="testimonials.title">&gt; témoignages <span class="uwu">(„• ֊ •„)</span> &lt;&lt;</h2>
+                <div class="testimonials-grid">
+                    <figure class="testimonial-card">
+                        <blockquote data-i18n="testimonials.q1">« Théau apporte une énergie communicative à chaque projet, et son sens du détail visuel fait la différence. »</blockquote>
+                        <figcaption data-i18n="testimonials.a1">— Camille, collègue dev</figcaption>
+                    </figure>
+                    <figure class="testimonial-card">
+                        <blockquote data-i18n="testimonials.q2">« Un mentor patient et clair. Il m'a fait aimer le développement web. »</blockquote>
+                        <figcaption data-i18n="testimonials.a2">— Étudiant·e Ynov</figcaption>
+                    </figure>
+                    <figure class="testimonial-card">
+                        <blockquote data-i18n="testimonials.q3">« THE STAND est devenu LE rendez-vous des passionnés. Organisation au top. »</blockquote>
+                        <figcaption data-i18n="testimonials.a3">— Participant à un rassemblement</figcaption>
+                    </figure>
+                </div>
+                <p class="muted-note" data-i18n="testimonials.note">✏️ Remplace ces témoignages par de vrais retours quand tu en as.</p>
+            </section>
+
+            <!-- Section "Livre d'or" -->
+            <section id="guestbook">
+                <h2 data-i18n="guestbook.title">&gt; livre d'or <span class="uwu">(◠‿◠)</span> &lt;&lt;</h2>
+                <p data-i18n="guestbook.intro">Laisse un petit mot ! (sauvegardé en local dans ton navigateur uniquement)</p>
+                <form id="guestbook-form" class="guestbook-form" autocomplete="off">
+                    <input type="text" id="guestbook-name" maxlength="40" placeholder="ton pseudo" data-i18n-placeholder="guestbook.namePlaceholder" required>
+                    <input type="text" id="guestbook-message" maxlength="180" placeholder="ton message kawaii…" data-i18n-placeholder="guestbook.msgPlaceholder" required>
+                    <button type="submit" data-i18n="guestbook.sign">signer ♥</button>
+                </form>
+                <ul id="guestbook-entries" class="guestbook-entries" aria-live="polite"></ul>
+            </section>
+
             <!-- Section "Contact" -->
             <section id="contact">
-                <h2>&gt; contact <span class="uwu">(｡♥‿♥｡)</span> &lt;&lt;</h2>
-                <p>
+                <h2 data-i18n="contact.title">&gt; contact <span class="uwu">(｡♥‿♥｡)</span> &lt;&lt;</h2>
+                <p data-i18n="contact.intro">
                     Envies de discuter d'un projet, d'une collaboration ou juste de dire bonjour ?
-                    <br>
-                    Envoie-moi un message : <a href="mailto:yapsonstudio@gmail.com">yapsonstudio@gmail.com</a>
                 </p>
+
+                <!-- TODO: remplace YOUR_FORM_ID par ton ID Formspree (https://formspree.io) -->
+                <form id="contact-form" class="contact-form" action="https://formspree.io/f/xbdbzedb" method="POST">
+                    <label>
+                        <span data-i18n="contact.name">Nom</span>
+                        <input type="text" name="name" required maxlength="80">
+                    </label>
+                    <label>
+                        <span data-i18n="contact.email">Email</span>
+                        <input type="email" name="email" required>
+                    </label>
+                    <label>
+                        <span data-i18n="contact.message">Message</span>
+                        <textarea name="message" rows="4" required maxlength="2000"></textarea>
+                    </label>
+                    <button type="submit" data-i18n="contact.send">Envoyer ♥</button>
+                    <p class="form-status" role="status"></p>
+                </form>
+
+                <p class="contact-fallback" data-i18n="contact.fallback">
+                    Ou par mail direct : <a href="mailto:yapsonstudio@gmail.com">yapsonstudio@gmail.com</a>
+                </p>
+
+                <!-- TODO: place ton CV en assets/cv.pdf pour activer ce lien -->
+                <a href="assets/cv.pdf" download class="cv-download" data-i18n="contact.cv">📄 Télécharger mon CV</a>
             </section>
 
             <!-- Pied de page -->
             <footer>
                 <p>
-                    fait avec ❤️ et des couleurs pastel | © 2025
+                    <span data-i18n="footer.made">fait avec ❤️ et des couleurs pastel | © 2025</span>
                     <br>
-                    <a href="https://twitch.tv/yatokishi" target="_blank">twitch</a> ·
-                    <a href="https://github.com/leyapson" target="_blank">github</a>
+                    <a href="https://twitch.tv/yatokishi" target="_blank" rel="noopener" class="social-link twitch" aria-label="Twitch">
+                        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4.265 3 3 6.236v13.528h4.47V22h2.47l2.235-2.236h3.647L21 14.589V3H4.265zm15.323 10.766-3.235 3.236h-3.647l-2.236 2.235v-2.235H6.647V4.765h12.94v9.001zM16.353 7.706h-1.647v4.823h1.647V7.706zm-4.471 0h-1.647v4.823h1.647V7.706z"/>
+                        </svg>
+                        <span>twitch</span>
+                    </a>
+                    <a href="https://github.com/leyapson" target="_blank" rel="noopener" class="social-link github" aria-label="GitHub">
+                        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 .5C5.73.5.67 5.56.67 11.83c0 4.99 3.24 9.22 7.74 10.72.57.1.78-.25.78-.55v-2.07c-3.15.69-3.81-1.34-3.81-1.34-.51-1.3-1.25-1.65-1.25-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.74 2.66 1.24 3.31.95.1-.74.4-1.24.72-1.53-2.51-.29-5.16-1.26-5.16-5.6 0-1.24.44-2.25 1.16-3.05-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.1 1.17.9-.25 1.86-.37 2.82-.38.96.01 1.92.13 2.82.38 2.15-1.47 3.1-1.17 3.1-1.17.61 1.56.23 2.71.11 3 .72.8 1.16 1.81 1.16 3.05 0 4.35-2.66 5.31-5.18 5.59.41.36.78 1.06.78 2.14v3.18c0 .31.21.66.79.55 4.5-1.5 7.73-5.73 7.73-10.72C23.33 5.56 18.27.5 12 .5z"/>
+                        </svg>
+                        <span>github</span>
+                    </a>
                 </p>
             </footer>
         </div>
@@ -267,7 +368,16 @@
     <script src="night-mode.js" defer></script>
     <script src="visitor-counter.js" defer></script>
     <script src="mood-meter.js" defer></script>
-    
+
+    <!-- Nouveautés : i18n, nav active, témoignages dynamiques optionnels,
+         livre d'or, formulaire de contact, badge Twitch live -->
+    <script src="i18n.js" defer></script>
+    <script src="mascot-sound.js" defer></script>
+    <script src="nav-active.js" defer></script>
+    <script src="guestbook.js" defer></script>
+    <script src="contact-form.js" defer></script>
+    <script src="twitch-status.js" defer></script>
+
     <div class="scanlines" aria-hidden="true"></div>
 </body>
 </html>

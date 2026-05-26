@@ -10,6 +10,20 @@
         html, body {
             height: 100%;
             overflow-x: hidden;
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* Accessibilité : neutraliser les animations pour les visiteurs
+           qui préfèrent un mouvement réduit. */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            html, body { scroll-behavior: auto !important; }
         }
 
         body {
@@ -94,6 +108,13 @@
             margin-bottom: 2rem;
             padding-bottom: 1rem;
             border-bottom: 1px dashed var(--border-color);
+        }
+
+        .avatar-link {
+            display: inline-block;
+            border-radius: 50%;
+            text-decoration: none;
+            line-height: 0;
         }
 
         .avatar {
@@ -220,6 +241,64 @@
         
         nav a:hover::before {
             transform: translateX(0);
+        }
+
+        /* Section active dans la nav (mise à jour par nav-active.js) */
+        nav a.is-active {
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Badge Twitch live */
+        .twitch-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            text-decoration: none;
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease;
+        }
+        .twitch-badge:hover { transform: translateY(-2px); }
+        .twitch-badge .twitch-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #888;
+        }
+        .twitch-badge.live { border-color: #9146ff; color: #9146ff; }
+        .twitch-badge.live .twitch-dot {
+            background-color: #ff3b3b;
+            box-shadow: 0 0 8px rgba(255, 59, 59, 0.8);
+            animation: pulse-live 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse-live {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Ligne "Now" */
+        .now-line {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 14px;
+            background-color: rgba(181, 234, 215, 0.4);
+            border: 1px dashed var(--secondary-color);
+            border-radius: 18px;
+            font-size: 0.9rem;
+        }
+        .now-tag {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.55rem;
+            margin-right: 6px;
+            color: var(--accent-color);
         }
 
         /* Sections */
@@ -355,6 +434,228 @@
             margin-bottom: 150px; /* Espace pour le sol */
         }
         
+        /* Témoignages */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .testimonial-card {
+            margin: 0;
+            background-color: var(--card-bg, white);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: "“";
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 3rem;
+            color: var(--accent-color);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .testimonial-card blockquote {
+            margin: 0 0 10px;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        .testimonial-card figcaption {
+            font-size: 0.8rem;
+            color: var(--muted-text, #666);
+            text-align: right;
+        }
+        .muted-note {
+            margin-top: 14px;
+            font-size: 0.8rem;
+            color: var(--muted-text, #666);
+            font-style: italic;
+        }
+
+        /* Livre d'or */
+        .guestbook-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 14px 0;
+        }
+        .guestbook-form input {
+            flex: 1 1 140px;
+            padding: 8px 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 18px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            background-color: var(--card-bg, white);
+            color: var(--text-color);
+        }
+        .guestbook-form input:focus,
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.3);
+        }
+        .guestbook-form button,
+        .contact-form button {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 18px;
+            background-color: var(--accent-color);
+            color: white;
+            font-family: 'IBM Plex Mono', monospace;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .guestbook-form button:hover,
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            background-color: var(--tertiary-color);
+        }
+        .guestbook-entries {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        .guestbook-entry {
+            padding: 10px 14px;
+            background-color: var(--card-bg, white);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            position: relative;
+        }
+        .guestbook-entry .name {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+        }
+        .guestbook-entry .date {
+            font-size: 0.7rem;
+            color: var(--muted-text, #888);
+            margin-left: 6px;
+        }
+        .guestbook-entry .msg {
+            margin-top: 4px;
+            font-size: 0.9rem;
+            word-wrap: break-word;
+        }
+        .guestbook-entry .delete {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: var(--muted-text, #888);
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+        .guestbook-entry .delete:hover { opacity: 1; }
+
+        /* Contact form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 14px 0;
+        }
+        .contact-form label {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 0.85rem;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px 14px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: var(--card-bg, white);
+            color: var(--text-color);
+        }
+        .contact-form textarea { resize: vertical; min-height: 80px; }
+        .contact-form button { align-self: flex-start; }
+        .form-status {
+            margin: 0;
+            font-size: 0.85rem;
+            min-height: 1.2em;
+        }
+        .form-status.success { color: #4caf50; }
+        .form-status.error { color: #e57373; }
+        .contact-fallback { font-size: 0.9rem; }
+
+        .cv-download {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 18px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .cv-download:hover {
+            transform: translateY(-2px);
+            background-color: var(--tertiary-color);
+        }
+
+        /* Liens sociaux du footer avec icônes */
+        footer .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 0 8px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.7);
+            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            vertical-align: middle;
+        }
+
+        footer .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        footer .social-link.twitch:hover {
+            background-color: #9146ff;
+            color: white;
+            border-color: #9146ff;
+        }
+
+        footer .social-link.github:hover {
+            background-color: #24292e;
+            color: white;
+            border-color: #24292e;
+        }
+
+        .social-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
         /* Conteneur pour le sol qui prend toute la largeur */
         .ground-container {
             position: fixed;
