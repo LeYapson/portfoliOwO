@@ -11,7 +11,7 @@
             height: 100%;
             overflow-x: hidden;
             scroll-behavior: smooth;
-            scroll-padding-top: 80px;
+            scroll-padding-top: 96px;
         }
 
         /* Accessibilité : neutraliser les animations pour les visiteurs
@@ -244,6 +244,22 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 10px;
+            position: sticky;
+            top: 12px;
+            z-index: 20;
+            padding: 8px;
+            border-radius: 24px;
+            background-color: rgba(255, 255, 255, 0);
+            backdrop-filter: blur(0px);
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Une fois la nav collée en haut, on lui donne un fond pour
+           qu'elle reste lisible par-dessus le contenu qui défile. */
+        nav.is-stuck {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         nav a {

@@ -16,24 +16,15 @@
             setTimeout(() => waitForToolsDock(callback), 100);
         }
     }
-    
+
     // Créer l'icône du mode nuit et l'ajouter au dock
     let nightModeIcon;
-    
-    waitForToolsDock(() => {
-        nightModeIcon = window.addToolToDock('🌙', 'Mode nuit', toggleNightMode, 'night-mode-toggle');
 
-        // Appliquer la préférence stockée une fois que l'icône existe.
-        // (Le script est chargé en `defer` donc DOMContentLoaded peut déjà
-        // être passé ; on déclenche directement le bascule ici.)
-        if (localStorage.getItem('nightMode') === 'true') {
-            toggleNightMode();
-        }
-    });
-    
     // Variables pour suivre l'état du mode
+    // (déclarées avant waitForToolsDock car son callback peut s'exécuter
+    // immédiatement et appeler toggleNightMode qui en dépend)
     let isNightMode = false;
-    
+
     // Définir les couleurs pour le mode jour (variables CSS par défaut)
     const dayColors = {
         '--bg-color': '#6692af',
@@ -53,7 +44,18 @@
         '--tertiary-color': '#af97cc',
         '--border-color': '#de89a1'
     };
-    
+
+    waitForToolsDock(() => {
+        nightModeIcon = window.addToolToDock('🌙', 'Mode nuit', toggleNightMode, 'night-mode-toggle');
+
+        // Appliquer la préférence stockée une fois que l'icône existe.
+        // (Le script est chargé en `defer` donc DOMContentLoaded peut déjà
+        // être passé ; on déclenche directement le bascule ici.)
+        if (localStorage.getItem('nightMode') === 'true') {
+            toggleNightMode();
+        }
+    });
+
     // Fonction pour basculer le mode
     function toggleNightMode() {
         isNightMode = !isNightMode;

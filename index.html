@@ -57,11 +57,12 @@
                 <!-- Ligne "Now" : ce sur quoi je travaille en ce moment -->
                 <p class="now-line" data-i18n="now">
                     <span class="now-tag">🌱 now</span>
-                    Je code un JRPG sur Godot et j'organise les prochains rassemblements THE STAND.
+                    Je code un JRPG sur Godot et je fais grandir <a href="https://aniquiz.fr" target="_blank" rel="noopener">Aniquiz</a>, mon blindtest anime multijoueur.
                 </p>
             </header>
 
             <!-- Navigation -->
+            <div id="nav-sentinel" aria-hidden="true"></div>
             <nav id="primary-nav">
                 <a href="#about" data-i18n="nav.about">à propos</a>
                 <a href="#projects" data-i18n="nav.projects">projets</a>
@@ -87,6 +88,19 @@
             <!-- Section "Projets" -->
             <section id="projects">
                 <h2 data-i18n="projects.title">&gt; mes projets <span class="uwu">(・∀・)</span> &lt;&lt;</h2>
+
+                <div class="project">
+                    <h3>🎧 Aniquiz</h3>
+                    <p data-i18n="projects.aniquiz">Blindtest anime multijoueur en temps réel : identifie les openings et endings avant tout le monde. Backend Go + WebSocket, frontend Vue 3, déployé en live sur aniquiz.fr.</p>
+                    <div class="project-tags">
+                        <span class="tag">Vue 3</span>
+                        <span class="tag">Go</span>
+                        <span class="tag">WebSocket</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                    <a href="https://aniquiz.fr" target="_blank" class="project-link" data-i18n="projects.viewSite">Voir le site</a>
+                    <a href="https://github.com/LeYapson/aniquiz" target="_blank" class="project-link" data-i18n="projects.viewGithub">Voir sur GitHub</a>
+                </div>
 
                 <div class="project">
                     <h3>🦉 RavenWise</h3>
@@ -246,15 +260,6 @@
                     <div class="experience-item">
                         <div class="experience-date" data-i18n="exp.ongoing">Projet en cours</div>
                         <div class="experience-content">
-                            <h3 data-i18n="exp.thestand.title">Fondateur & Organisateur</h3>
-                            <p class="experience-place">THE STAND</p>
-                            <p data-i18n="exp.thestand.body">Organisation d'événements de rassemblement automobile.</p>
-                        </div>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="experience-date" data-i18n="exp.ongoing">Projet en cours</div>
-                        <div class="experience-content">
                             <h3 data-i18n="exp.projectms.title">Développeur Indépendant</h3>
                             <p class="experience-place">Project MS</p>
                             <p data-i18n="exp.projectms.body">Développement d'un jeu vidéo JRPG japonais sur Godot Engine.</p>
@@ -274,10 +279,6 @@
                     <figure class="testimonial-card">
                         <blockquote data-i18n="testimonials.q2">« Un mentor patient et clair. Il m'a fait aimer le développement web. »</blockquote>
                         <figcaption data-i18n="testimonials.a2">— Étudiant·e Ynov</figcaption>
-                    </figure>
-                    <figure class="testimonial-card">
-                        <blockquote data-i18n="testimonials.q3">« THE STAND est devenu LE rendez-vous des passionnés. Organisation au top. »</blockquote>
-                        <figcaption data-i18n="testimonials.a3">— Participant à un rassemblement</figcaption>
                     </figure>
                 </div>
                 <p class="muted-note" data-i18n="testimonials.note">✏️ Remplace ces témoignages par de vrais retours quand tu en as.</p>

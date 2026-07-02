@@ -13,7 +13,7 @@
             // Header
             'title': 'théau yapi <span class="uwu">(◕‿◕✿)</span>',
             'tagline': "développeur · streamer · organisateur d'événements",
-            'now': '<span class="now-tag">🌱 now</span> Je code un JRPG sur Godot et j\'organise les prochains rassemblements THE STAND.',
+            'now': '<span class="now-tag">🌱 now</span> Je code un JRPG sur Godot et je fais grandir <a href="https://aniquiz.fr" target="_blank" rel="noopener">Aniquiz</a>, mon blindtest anime multijoueur.',
 
             // Nav
             'nav.about': 'à propos',
@@ -31,6 +31,8 @@
             // Projects
             'projects.title': '&gt; mes projets <span class="uwu">(・∀・)</span> &lt;&lt;',
             'projects.viewGithub': 'Voir sur GitHub',
+            'projects.viewSite': 'Voir le site',
+            'projects.aniquiz': "Blindtest anime multijoueur en temps réel : identifie les openings et endings avant tout le monde. Backend Go + WebSocket, frontend Vue 3, déployé en live sur aniquiz.fr.",
             'projects.ravenwise': "Plateforme éducative interactive avec système d'authentification, tableau de bord personnalisé et contenu de cours adaptatif. Développé avec Next.js et React.",
             'projects.cwag': "Jeu arcade multijoueur et solo développé avec Godot Engine, où les joueurs contrôlent des voitures armées dans des arènes de combat palpitantes.",
             'projects.codedex': "Site web à thème de pêche avec un design inspiré des années 90, créé pour le hackathon d'hiver de Codedex avec des animations rétro.",
@@ -66,8 +68,6 @@
             'exp.eea.date': 'Sep 2020 - Juil 2022',
             'exp.eea.title': 'Licence en Électronique, Électrotechnique et Automatisation',
             'exp.eea.body': 'Formation en systèmes électroniques et automatisés.',
-            'exp.thestand.title': 'Fondateur & Organisateur',
-            'exp.thestand.body': "Organisation d'événements de rassemblement automobile.",
             'exp.projectms.title': 'Développeur Indépendant',
             'exp.projectms.body': "Développement d'un jeu vidéo JRPG japonais sur Godot Engine.",
 
@@ -77,8 +77,6 @@
             'testimonials.a1': '— Camille, collègue dev',
             'testimonials.q2': "« Un mentor patient et clair. Il m'a fait aimer le développement web. »",
             'testimonials.a2': '— Étudiant·e Ynov',
-            'testimonials.q3': '« THE STAND est devenu LE rendez-vous des passionnés. Organisation au top. »',
-            'testimonials.a3': '— Participant à un rassemblement',
             'testimonials.note': '✏️ Remplace ces témoignages par de vrais retours quand tu en as.',
 
             // Guestbook
@@ -116,7 +114,7 @@
             // Header
             'title': 'théau yapi <span class="uwu">(◕‿◕✿)</span>',
             'tagline': 'developer · streamer · event organizer',
-            'now': '<span class="now-tag">🌱 now</span> Building a Godot JRPG and prepping the next THE STAND meetups.',
+            'now': '<span class="now-tag">🌱 now</span> Building a Godot JRPG and growing <a href="https://aniquiz.fr" target="_blank" rel="noopener">Aniquiz</a>, my multiplayer anime blind-test game.',
 
             // Nav
             'nav.about': 'about',
@@ -134,6 +132,8 @@
             // Projects
             'projects.title': '&gt; my projects <span class="uwu">(・∀・)</span> &lt;&lt;',
             'projects.viewGithub': 'View on GitHub',
+            'projects.viewSite': 'View site',
+            'projects.aniquiz': "Real-time multiplayer anime blind-test: name the opening and ending themes before everyone else. Go + WebSocket backend, Vue 3 frontend, live at aniquiz.fr.",
             'projects.ravenwise': "Interactive educational platform with authentication, personalized dashboard and adaptive course content. Built with Next.js and React.",
             'projects.cwag': "Solo & multiplayer arcade game built with Godot Engine, where players drive armed cars in thrilling combat arenas.",
             'projects.codedex': "Fishing-themed website with a 90s-inspired design, built for the Codedex winter hackathon with retro animations.",
@@ -169,8 +169,6 @@
             'exp.eea.date': 'Sep 2020 - Jul 2022',
             'exp.eea.title': "Bachelor's in Electronics, Electrical Engineering & Automation",
             'exp.eea.body': 'Training in electronic and automated systems.',
-            'exp.thestand.title': 'Founder & Organizer',
-            'exp.thestand.body': 'Organizing automotive meetup events.',
             'exp.projectms.title': 'Indie Developer',
             'exp.projectms.body': 'Building a Japanese-style JRPG with Godot Engine.',
 
@@ -180,8 +178,6 @@
             'testimonials.a1': '— Camille, fellow dev',
             'testimonials.q2': '"A patient and clear mentor. He made me love web development."',
             'testimonials.a2': '— Ynov student',
-            'testimonials.q3': '"THE STAND has become THE meetup for enthusiasts. Top-notch organization."',
-            'testimonials.a3': '— Meetup attendee',
             'testimonials.note': '✏️ Swap these placeholder testimonials for real ones once you have them.',
 
             // Guestbook

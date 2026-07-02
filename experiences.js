@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
             'Licence en Électronique, Électrotechnique et Automatisation': 'education',
             
             // Projets
-            'Fondateur & Organisateur': 'project',
             'Développeur Indépendant': 'project'
         };
         

@@ -1,36 +1,50 @@
 {
   "projects": [
     {
+      "title": "Aniquiz",
+      "i18nKey": "aniquiz",
+      "description": "Blindtest anime multijoueur en temps réel : identifie les openings et endings avant tout le monde. Backend Go + WebSocket, frontend Vue 3, déployé en live sur aniquiz.fr.",
+      "emoji": "🎧",
+      "technologies": ["Vue 3", "Go", "WebSocket", "PostgreSQL"],
+      "features": ["Parties multijoueur en temps réel", "Système de progression (XP, niveaux)", "Connexion AniList / MyAnimeList", "Déployé en production sur aniquiz.fr"],
+      "github": "https://github.com/LeYapson/aniquiz",
+      "site": "https://aniquiz.fr"
+    },
+    {
       "title": "RavenWise",
+      "i18nKey": "ravenwise",
       "description": "Plateforme éducative interactive avec système d'authentification, tableau de bord personnalisé, et contenu de cours adaptatif.",
       "emoji": "🦉",
       "technologies": ["Next.js", "React", "Tailwind CSS", "Firebase"],
       "features": ["Authentification utilisateur", "Système de cours progressif", "Tableau de bord d'apprentissage", "Design responsive"],
-      "github": "https://github.com/theauyapi/RavenWise_Front"
+      "github": "https://github.com/LeYapson/RavenWise_Front"
     },
     {
       "title": "Car With A Gun",
+      "i18nKey": "cwag",
       "description": "Jeu arcade multijoueur et solo développé avec Godot Engine, où les joueurs contrôlent des voitures armées dans des arènes de combat.",
       "emoji": "🚗",
       "technologies": ["Godot Engine", "GDScript", "Networking", "Game Physics"],
       "features": ["Mode multijoueur en ligne", "Mode solo avec IA", "Personnalisation des véhicules", "Arènes variées"],
-      "github": "https://github.com/theauyapi/Car_With_A_Gun"
+      "github": "https://github.com/LeYapson/Car_With_A_Gun"
     },
     {
       "title": "Codedex Winter Hackathon",
+      "i18nKey": "codedex",
       "description": "Site web à thème de pêche avec un design inspiré des années 90, créé pour le hackathon d'hiver de Codedex.",
       "emoji": "🎣",
       "technologies": ["HTML", "CSS", "JavaScript", "Pixel Art"],
       "features": ["Design rétro années 90", "Animation de pêche interactive", "Ambiance nostalgique", "Effets visuels pixelisés"],
-      "github": "https://github.com/theauyapi/Codedex-winter-hackaton"
+      "github": "https://github.com/LeYapson/Codedex-winter-hackaton"
     },
     {
       "title": "Portfolio UwU",
+      "i18nKey": "uwu",
       "description": "Ce portfolio kawaii avec effets parallaxe, mascotte interactive et lecteur de musique LoFi intégré.",
       "emoji": "✨",
       "technologies": ["HTML", "CSS", "JavaScript", "Design kawaii"],
       "features": ["Effet parallaxe", "Mascotte interactive", "Lecteur de musique LoFi", "Design UwU pastel"],
-      "github": "https://github.com/theauyapi/portfoliOwO"
+      "github": "https://github.com/LeYapson/portfoliOwO"
     }
   ]
 }

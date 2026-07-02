@@ -1,7 +1,18 @@
-// nav-active.js - Surligne la section visible dans la nav (scroll spy).
+// nav-active.js - Surligne la section visible dans la nav (scroll spy)
+// et bascule le fond de la nav collante (sticky) une fois qu'elle est en haut.
 (() => {
     const nav = document.getElementById('primary-nav');
     if (!nav) return;
+
+    const sentinel = document.getElementById('nav-sentinel');
+    if (sentinel) {
+        const stickyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                nav.classList.toggle('is-stuck', !entry.isIntersecting);
+            });
+        }, { threshold: 0 });
+        stickyObserver.observe(sentinel);
+    }
 
     const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
     const sections = links
