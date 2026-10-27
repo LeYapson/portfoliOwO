@@ -1,78 +1,65 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let loadedProjects = null;
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+    let projects = [];
 
-    // Charger les projets depuis le fichier JSON
-    fetch('projects.json')
-        .then(response => response.json())
-        .then(data => {
-            loadedProjects = data.projects;
-            // Ajouter un peu de délai pour l'effet UwU
-            setTimeout(() => {
-                loadProjects(loadedProjects, { animate: true });
-            }, 500);
-        })
-        .catch(error => console.error('Erreur lors du chargement des projets:', error));
+    const text = (key, fallback) => (window.i18n && window.i18n.t(key)) || fallback;
 
-    // Re-rendre les projets dans la langue courante quand elle change
-    document.addEventListener('langchange', () => {
-        if (loadedProjects) loadProjects(loadedProjects, { animate: false });
-    });
-
-    function text(key, fallback) {
-        return (window.i18n && window.i18n.t(key)) || fallback;
-    }
-
-    // Fonction pour charger les projets dans le DOM
-    function loadProjects(projects, { animate }) {
-        const projectsSection = document.getElementById('projects');
-        const projectsTitle = projectsSection.querySelector('h2');
-
-        // Supprimer les projets existants pour éviter les doublons
-        const existingProjects = projectsSection.querySelectorAll('.project');
-        existingProjects.forEach(project => project.remove());
-
-        const githubLabel = text('projects.viewGithub', 'Voir sur GitHub');
+    function render() {
+        const githubLabel = text('projects.viewGithub', 'GitHub');
         const siteLabel = text('projects.viewSite', 'Voir le site');
+        const zoomLabel = text('projects.zoom', "Agrandir l'image");
 
-        // Ajouter chaque projet du JSON, dans l'ordre du JSON
-        let previousElement = projectsTitle;
-        projects.forEach((project, index) => {
-            const projectElement = document.createElement('div');
-            projectElement.className = 'project';
-            projectElement.style.animationDelay = `${index * 0.2}s`;
-
+        grid.innerHTML = projects.map(project => {
             const description = project.i18nKey
                 ? text(`projects.${project.i18nKey}`, project.description)
                 : project.description;
+            const status = project.status
+                ? `<span class="status status-${project.status}">${text(`projects.status.${project.status}`, project.status)}</span>`
+                : '';
+            const lang = (window.i18n && window.i18n.currentLang()) || 'fr';
+            const shots = project.images
+                ? `<div class="shots">${project.images.map(img => `<button type="button" class="shot" aria-label="${zoomLabel}"><img src="${img.src}" alt="${img.alt[lang] || img.alt.fr}" loading="lazy"></button>`).join('')}</div>`
+                : '';
+            const links = [
+                project.site && `<a href="${project.site}" target="_blank" rel="noopener">${siteLabel}</a>`,
+                project.github && `<a href="${project.github}" target="_blank" rel="noopener">${githubLabel}</a>`,
+            ].filter(Boolean).join('');
 
-            // Contenu du projet
-            projectElement.innerHTML = `
-                <h3>${project.emoji} ${project.title}</h3>
-                <p>${description}</p>
-                <div class="project-tags">
-                    ${project.technologies.map(tech => `<span class="tag">${tech}</span>`).join('')}
-                </div>
-                ${project.site ? `<a href="${project.site}" target="_blank" class="project-link">${siteLabel}</a>` : ''}
-                <a href="${project.github}" target="_blank" class="project-link">${githubLabel}</a>
-            `;
-
-            previousElement.after(projectElement);
-            previousElement = projectElement;
-        });
-
-        if (!animate) return;
-
-        // Ajouter un effet d'animation aux projets
-        const projectElements = document.querySelectorAll('.project');
-        projectElements.forEach((elem, index) => {
-            elem.style.opacity = '0';
-            elem.style.transform = 'translateY(20px)';
-
-            setTimeout(() => {
-                elem.style.transition = 'all 0.5s ease';
-                elem.style.opacity = '1';
-                elem.style.transform = 'translateY(0)';
-            }, 100 + index * 200);
-        });
+            return `
+                <article class="project${project.featured ? ' featured' : ''}">
+                    ${shots}
+                    <div class="project-head">
+                        <h3>${project.title}</h3>
+                        ${status}
+                    </div>
+                    <p>${description}</p>
+                    <div class="tags">${project.technologies.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                    ${links ? `<div class="project-links">${links}</div>` : ''}
+                </article>`;
+        }).join('');
     }
+
+    // Lightbox : clic sur une image pour l'agrandir
+    const box = document.createElement('dialog');
+    box.className = 'lightbox';
+    box.innerHTML = '<button type="button" class="lightbox-close" aria-label="Fermer">✕</button><img alt="">';
+    document.body.appendChild(box);
+    const boxImg = box.querySelector('img');
+
+    grid.addEventListener('click', e => {
+        const img = e.target.closest('.shot img');
+        if (!img) return;
+        boxImg.src = img.src;
+        boxImg.alt = img.alt;
+        box.showModal();
+    });
+    box.addEventListener('click', () => box.close());
+
+    fetch('projects.json')
+        .then(res => res.json())
+        .then(data => { projects = data.projects; render(); })
+        .catch(err => console.error('Erreur lors du chargement des projets:', err));
+
+    document.addEventListener('langchange', render);
 });

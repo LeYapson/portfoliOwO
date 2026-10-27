@@ -1,50 +1,81 @@
 {
   "projects": [
     {
-      "title": "Aniquiz",
-      "i18nKey": "aniquiz",
-      "description": "Blindtest anime multijoueur en temps réel : identifie les openings et endings avant tout le monde. Backend Go + WebSocket, frontend Vue 3, déployé en live sur aniquiz.fr.",
-      "emoji": "🎧",
-      "technologies": ["Vue 3", "Go", "WebSocket", "PostgreSQL"],
-      "features": ["Parties multijoueur en temps réel", "Système de progression (XP, niveaux)", "Connexion AniList / MyAnimeList", "Déployé en production sur aniquiz.fr"],
-      "github": "https://github.com/LeYapson/aniquiz",
-      "site": "https://aniquiz.fr"
+      "title": "NomadIDE",
+      "i18nKey": "nomadide",
+      "featured": true,
+      "status": "wip",
+      "description": "Un IDE dédié à l'IoT, conçu et développé seul, qui regroupe en un seul outil ce que Thonny et Arduino IDE font séparément. Écriture en MicroPython et flash des cartes RP2040, ESP32 et ESP32-S3, sur PC et mobile.",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "MicroPython",
+        "ESP32",
+        "RP2040",
+        "PC",
+        "Mobile"
+      ],
+      "github": "https://github.com/LeYapson/NomadIDE",
+      "images": [
+        {
+          "src": "assets/img/projects/nomadide-pc.jpg",
+          "alt": {
+            "fr": "NomadIDE sur PC, connecté à une carte RP2040 (Badger 2040), console MicroPython et explorateur de fichiers",
+            "en": "NomadIDE on desktop, connected to an RP2040 board (Badger 2040), with MicroPython console and file explorer"
+          }
+        },
+        {
+          "src": "assets/img/projects/nomadide-mobile-editor.png",
+          "alt": {
+            "fr": "NomadIDE sur mobile : éditeur de code MicroPython",
+            "en": "NomadIDE on mobile: MicroPython code editor"
+          }
+        },
+        {
+          "src": "assets/img/projects/nomadide-mobile-micropython.png",
+          "alt": {
+            "fr": "NomadIDE sur mobile : console MicroPython connectée à une carte",
+            "en": "NomadIDE on mobile: MicroPython console connected to a board"
+          }
+        }
+      ]
     },
     {
-      "title": "RavenWise",
-      "i18nKey": "ravenwise",
-      "description": "Plateforme éducative interactive avec système d'authentification, tableau de bord personnalisé, et contenu de cours adaptatif.",
-      "emoji": "🦉",
-      "technologies": ["Next.js", "React", "Tailwind CSS", "Firebase"],
-      "features": ["Authentification utilisateur", "Système de cours progressif", "Tableau de bord d'apprentissage", "Design responsive"],
-      "github": "https://github.com/LeYapson/RavenWise_Front"
+      "title": "Aniquiz",
+      "i18nKey": "aniquiz",
+      "status": "archived",
+      "description": "Blindtest anime multijoueur en temps réel : identifie les openings et endings avant tout le monde. Backend Go + WebSocket, frontend Vue 3.",
+      "technologies": [
+        "Vue 3",
+        "Go",
+        "WebSocket",
+        "PostgreSQL"
+      ],
+      "github": "https://github.com/LeYapson/aniquiz"
     },
     {
       "title": "Car With A Gun",
       "i18nKey": "cwag",
       "description": "Jeu arcade multijoueur et solo développé avec Godot Engine, où les joueurs contrôlent des voitures armées dans des arènes de combat.",
-      "emoji": "🚗",
-      "technologies": ["Godot Engine", "GDScript", "Networking", "Game Physics"],
-      "features": ["Mode multijoueur en ligne", "Mode solo avec IA", "Personnalisation des véhicules", "Arènes variées"],
+      "technologies": [
+        "Godot Engine",
+        "GDScript",
+        "Networking",
+        "Game Physics"
+      ],
       "github": "https://github.com/LeYapson/Car_With_A_Gun"
     },
     {
       "title": "Codedex Winter Hackathon",
       "i18nKey": "codedex",
       "description": "Site web à thème de pêche avec un design inspiré des années 90, créé pour le hackathon d'hiver de Codedex.",
-      "emoji": "🎣",
-      "technologies": ["HTML", "CSS", "JavaScript", "Pixel Art"],
-      "features": ["Design rétro années 90", "Animation de pêche interactive", "Ambiance nostalgique", "Effets visuels pixelisés"],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Pixel Art"
+      ],
       "github": "https://github.com/LeYapson/Codedex-winter-hackaton"
-    },
-    {
-      "title": "Portfolio UwU",
-      "i18nKey": "uwu",
-      "description": "Ce portfolio kawaii avec effets parallaxe, mascotte interactive et lecteur de musique LoFi intégré.",
-      "emoji": "✨",
-      "technologies": ["HTML", "CSS", "JavaScript", "Design kawaii"],
-      "features": ["Effet parallaxe", "Mascotte interactive", "Lecteur de musique LoFi", "Design UwU pastel"],
-      "github": "https://github.com/LeYapson/portfoliOwO"
     }
   ]
 }

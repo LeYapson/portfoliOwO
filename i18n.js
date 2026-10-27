@@ -1,159 +1,116 @@
-// i18n.js - Bascule FR / EN via le tools-dock.
-// Supports : data-i18n="<clé>"             -> innerHTML
-//            data-i18n-placeholder="<clé>"  -> attribut placeholder
-//            data-i18n-title="<clé>"        -> attribut title
-//            data-i18n-aria-label="<clé>"   -> attribut aria-label
+// i18n.js - Bascule FR / EN.
+// data-i18n="<clé>"              -> innerHTML
+// data-i18n-title="<clé>"        -> attribut title
+// data-i18n-content="<clé>"      -> attribut content (meta)
 (() => {
     const dict = {
         fr: {
-            // Meta
-            'meta.title': 'Théau Yapi | Portfolio Parallaxe',
-            'meta.description': "Portfolio kawaii pastel de Théau Yapi — développeur, streamer et organisateur d'événements. Projets, expériences et easter eggs rétro.",
-
-            // Header
-            'title': 'théau yapi <span class="uwu">(◕‿◕✿)</span>',
+            'meta.title': 'Théau Yapi | Portfolio',
+            'meta.description': "Portfolio de Théau Yapi — développeur, streamer et organisateur d'événements.",
+            'header.links': 'Tous mes liens',
             'tagline': "développeur · streamer · organisateur d'événements",
-            'now': '<span class="now-tag">🌱 now</span> Je code un JRPG sur Godot et je fais grandir <a href="https://aniquiz.fr" target="_blank" rel="noopener">Aniquiz</a>, mon blindtest anime multijoueur.',
+            'now': "Je développe NomadIDE, un IDE dédié à l'IoT, sur PC et mobile.",
 
-            // Nav
+            'available': 'CDI · dès oct. 2027',
+            'cta.contact': 'ME CONTACTER',
             'nav.about': 'à propos',
             'nav.projects': 'projets',
             'nav.skills': 'compétences',
             'nav.experiences': 'expériences',
-            'nav.testimonials': 'témoignages',
-            'nav.guestbook': "livre d'or",
             'nav.contact': 'contact',
 
-            // About
-            'about.title': '&gt; à propos de moi &lt;',
-            'about.body': "Salut ! Je m'appelle Théau, je suis un développeur passionné par les jeux vidéo, les communautés en ligne et les voitures.<br><br>Ce portfolio est un mélange de <strong>nostalgie des années 2000</strong> et de <strong>douceur pastel</strong>, comme mes streams et mes projets.<br>Bienvenue dans mon petit coin d'internet ! <span class=\"uwu\">♥</span>",
+            'about.title': 'À PROPOS',
+            'about.photo': 'Portrait de Théau Yapi',
+            'about.body': "J'ai toujours été passionné par l'informatique et les jeux vidéo. Au collège, j'ai découvert la mécanique et l'automobile ; dans le supérieur, l'IoT et la programmation de microcontrôleurs.<br><br>Je cherche un CDI à partir d'octobre 2027.",
 
-            // Projects
-            'projects.title': '&gt; mes projets <span class="uwu">(・∀・)</span> &lt;&lt;',
-            'projects.viewGithub': 'Voir sur GitHub',
+            'projects.title': 'PROJETS',
+            'projects.viewGithub': 'GitHub',
             'projects.viewSite': 'Voir le site',
-            'projects.aniquiz': "Blindtest anime multijoueur en temps réel : identifie les openings et endings avant tout le monde. Backend Go + WebSocket, frontend Vue 3, déployé en live sur aniquiz.fr.",
-            'projects.ravenwise': "Plateforme éducative interactive avec système d'authentification, tableau de bord personnalisé et contenu de cours adaptatif. Développé avec Next.js et React.",
-            'projects.cwag': "Jeu arcade multijoueur et solo développé avec Godot Engine, où les joueurs contrôlent des voitures armées dans des arènes de combat palpitantes.",
-            'projects.codedex': "Site web à thème de pêche avec un design inspiré des années 90, créé pour le hackathon d'hiver de Codedex avec des animations rétro.",
-            'projects.uwu': "Ce site même ! Un hommage aux sites persos des années 2000, revisité en pastel avec effets parallaxe, mascotte interactive et lecteur de musique LoFi.",
+            'projects.zoom': "Agrandir l'image",
+            'projects.status.wip': 'EN COURS',
+            'projects.status.archived': 'ARCHIVÉ',
+            'projects.nomadide': "Un IDE dédié à l'IoT, conçu et développé seul, qui regroupe en un seul outil ce que Thonny et Arduino IDE font séparément. Écriture en MicroPython et flash des cartes RP2040, ESP32 et ESP32-S3, sur PC et mobile.",
+            'projects.aniquiz': "Blindtest anime multijoueur en temps réel : identifie les openings et endings avant tout le monde. Backend Go + WebSocket, frontend Vue 3.",
+            'projects.cwag': "Jeu arcade multijoueur et solo développé avec Godot Engine, où les joueurs contrôlent des voitures armées dans des arènes de combat.",
+            'projects.codedex': "Site web à thème de pêche avec un design inspiré des années 90, créé pour le hackathon d'hiver de Codedex.",
 
-            // Skills
-            'skills.title': '&gt; mes compétences <span class="uwu">(≧◡≦)</span> &lt;&lt;',
-            'skills.intro': "Développeur passionné avec une appétence pour le design et l'UX. Voici les domaines dans lesquels j'excelle :",
-            'skills.frontend.title': 'Frontend Developer',
-            'skills.frontend.body': "Création d'interfaces interactives et responsives avec React, Vue.js et les technologies modernes du web.",
-            'skills.backend.title': 'Backend Developer',
-            'skills.backend.body': "Développement d'API RESTful et d'applications serveur robustes avec Node.js, Express et Python.",
-            'skills.uiux.title': 'UI/UX Design',
-            'skills.uiux.body': "Conception d'expériences utilisateur intuitives et d'interfaces visuellement attrayantes.",
-            'skills.gamedev.title': 'Game Development',
-            'skills.gamedev.body': "Création de jeux et prototypes avec Unity, avec une passion particulière pour la conception de mécaniques de jeu.",
+            'skills.title': 'COMPÉTENCES',
+            'skills.mobile': 'Mobile & IoT',
+            'skills.backend': 'Backend',
+            'skills.web': 'Web',
+            'skills.game': 'Jeu vidéo',
+            'skills.ai': 'IA',
 
-            // Experiences
-            'experiences.title': '&gt; expériences <span class="uwu">(⌐■_■)</span> &lt;&lt;',
-            'exp.ongoing': 'Projet en cours',
+            'experiences.title': 'EXPÉRIENCES',
             'exp.ivalua.date': 'Oct 2024 - Présent',
             'exp.ivalua.title': 'Ingénieur Études et Développement',
             'exp.ivalua.body': 'Développement spécialisé en C#, .NET, et SQL Server.',
-            'exp.mentor.date': 'Fev 2024 - Juin 2024',
+            'exp.mentor.date': 'Fév 2024 - Juin 2024',
             'exp.mentor.title': 'Mentor Junior Informatique',
             'exp.mentor.body': 'Accompagnement et mentorat auprès des étudiants en informatique.',
             'exp.els.date': 'Août 2023 - Sep 2023',
             'exp.els.title': 'Développeur Web Front-end',
             'exp.els.body': "Développement d'interfaces web et intégration front-end.",
             'exp.ynov.date': 'Sep 2022 - Présent',
-            'exp.ynov.title': 'Licence Informatique',
-            'exp.ynov.body': 'Formation complète en développement et technologies informatiques.',
+            'exp.ynov.title': 'Mastère Informatique (M2) · Expert en développement logiciel',
+            'exp.ynov.body': 'Titre RNCP niveau 7 (RNCP39583) en préparation. Spécialisation en développement logiciel, mobile et IoT.',
             'exp.eea.date': 'Sep 2020 - Juil 2022',
             'exp.eea.title': 'Licence en Électronique, Électrotechnique et Automatisation',
             'exp.eea.body': 'Formation en systèmes électroniques et automatisés.',
-            'exp.projectms.title': 'Développeur Indépendant',
-            'exp.projectms.body': "Développement d'un jeu vidéo JRPG japonais sur Godot Engine.",
 
-            // Testimonials
-            'testimonials.title': '&gt; témoignages <span class="uwu">(„• ֊ •„)</span> &lt;&lt;',
-            'testimonials.q1': '« Théau apporte une énergie communicative à chaque projet, et son sens du détail visuel fait la différence. »',
-            'testimonials.a1': '— Camille, collègue dev',
-            'testimonials.q2': "« Un mentor patient et clair. Il m'a fait aimer le développement web. »",
-            'testimonials.a2': '— Étudiant·e Ynov',
-            'testimonials.note': '✏️ Remplace ces témoignages par de vrais retours quand tu en as.',
-
-            // Guestbook
-            'guestbook.title': '&gt; livre d\'or <span class="uwu">(◠‿◠)</span> &lt;&lt;',
-            'guestbook.intro': 'Laisse un petit mot ! (sauvegardé en local dans ton navigateur uniquement)',
-            'guestbook.namePlaceholder': 'ton pseudo',
-            'guestbook.msgPlaceholder': 'ton message kawaii…',
-            'guestbook.sign': 'signer ♥',
-            'guestbook.empty': 'Sois le premier à signer ! ♥',
-
-            // Contact
-            'contact.title': '&gt; contact <span class="uwu">(｡♥‿♥｡)</span> &lt;&lt;',
-            'contact.intro': "Envies de discuter d'un projet, d'une collaboration ou juste de dire bonjour ?",
+            'contact.title': 'CONTACT',
+            'contact.intro': "Envie de discuter d'un projet, d'une collaboration ou juste de dire bonjour ?",
             'contact.name': 'Nom',
             'contact.email': 'Email',
             'contact.message': 'Message',
-            'contact.send': 'Envoyer ♥',
-            'contact.cv': '📄 Télécharger mon CV',
-            'contact.fallback': 'Ou par mail direct : <a href="mailto:yapsonstudio@gmail.com">yapsonstudio@gmail.com</a>',
+            'contact.send': 'ENVOYER',
+            'contact.cv': 'TÉLÉCHARGER MON CV',
+            'contact.fallback': 'Ou par mail : <a href="mailto:yapsonstudio@gmail.com">yapsonstudio@gmail.com</a>',
             'contact.sending': 'Envoi en cours…',
-            'contact.success': 'Merci ! Ton message est envoyé ♥',
+            'contact.success': 'Merci ! Ton message est envoyé.',
             'contact.errorGeneric': "Oups, erreur lors de l'envoi.",
             'contact.errorNetwork': 'Erreur réseau, réessaie plus tard.',
-            'contact.errorUnconfigured': '⚠ Formulaire non configuré (remplace YOUR_FORM_ID dans index.html).',
-
-            // Footer
-            'footer.made': 'fait avec ❤️ et des couleurs pastel | © 2025',
+            'contact.errorUnconfigured': '⚠ Formulaire non configuré.',
         },
 
         en: {
-            // Meta
-            'meta.title': 'Théau Yapi | Parallax Portfolio',
-            'meta.description': "Kawaii pastel portfolio by Théau Yapi — developer, streamer and event organizer. Projects, experience and retro easter eggs.",
-
-            // Header
-            'title': 'théau yapi <span class="uwu">(◕‿◕✿)</span>',
+            'meta.title': 'Théau Yapi | Portfolio',
+            'meta.description': 'Portfolio of Théau Yapi — developer, streamer and event organizer.',
+            'header.links': 'All my links',
             'tagline': 'developer · streamer · event organizer',
-            'now': '<span class="now-tag">🌱 now</span> Building a Godot JRPG and growing <a href="https://aniquiz.fr" target="_blank" rel="noopener">Aniquiz</a>, my multiplayer anime blind-test game.',
+            'now': 'Building NomadIDE, an IoT-focused IDE for desktop and mobile.',
 
-            // Nav
+            'available': 'Open to work · permanent role from Oct 2027',
+            'cta.contact': 'CONTACT ME',
             'nav.about': 'about',
             'nav.projects': 'projects',
             'nav.skills': 'skills',
             'nav.experiences': 'experience',
-            'nav.testimonials': 'testimonials',
-            'nav.guestbook': 'guestbook',
             'nav.contact': 'contact',
 
-            // About
-            'about.title': '&gt; about me &lt;',
-            'about.body': "Hi! I'm Théau, a developer passionate about video games, online communities, and cars.<br><br>This portfolio is a blend of <strong>2000s nostalgia</strong> and <strong>pastel softness</strong>, just like my streams and my projects.<br>Welcome to my little corner of the internet! <span class=\"uwu\">♥</span>",
+            'about.title': 'ABOUT',
+            'about.photo': 'Portrait of Théau Yapi',
+            'about.body': "I've always been passionate about computers and video games. In middle school I discovered mechanics and cars; in higher education, IoT and microcontroller programming.<br><br>I'm looking for a permanent position starting October 2027.",
 
-            // Projects
-            'projects.title': '&gt; my projects <span class="uwu">(・∀・)</span> &lt;&lt;',
-            'projects.viewGithub': 'View on GitHub',
+            'projects.title': 'PROJECTS',
+            'projects.viewGithub': 'GitHub',
             'projects.viewSite': 'View site',
-            'projects.aniquiz': "Real-time multiplayer anime blind-test: name the opening and ending themes before everyone else. Go + WebSocket backend, Vue 3 frontend, live at aniquiz.fr.",
-            'projects.ravenwise': "Interactive educational platform with authentication, personalized dashboard and adaptive course content. Built with Next.js and React.",
-            'projects.cwag': "Solo & multiplayer arcade game built with Godot Engine, where players drive armed cars in thrilling combat arenas.",
-            'projects.codedex': "Fishing-themed website with a 90s-inspired design, built for the Codedex winter hackathon with retro animations.",
-            'projects.uwu': "This very site! A tribute to early-2000s personal pages, reimagined in pastel with parallax effects, an interactive mascot and a LoFi music player.",
+            'projects.zoom': 'Enlarge image',
+            'projects.status.wip': 'IN PROGRESS',
+            'projects.status.archived': 'ARCHIVED',
+            'projects.nomadide': "An IoT-focused IDE, designed and built solo, that combines in one tool what Thonny and Arduino IDE do separately. MicroPython editing and board flashing for RP2040, ESP32 and ESP32-S3, on desktop and mobile.",
+            'projects.aniquiz': 'Real-time multiplayer anime blind-test: name the opening and ending themes before everyone else. Go + WebSocket backend, Vue 3 frontend.',
+            'projects.cwag': 'Solo & multiplayer arcade game built with Godot Engine, where players drive armed cars in combat arenas.',
+            'projects.codedex': 'Fishing-themed website with a 90s-inspired design, built for the Codedex winter hackathon.',
 
-            // Skills
-            'skills.title': '&gt; my skills <span class="uwu">(≧◡≦)</span> &lt;&lt;',
-            'skills.intro': 'Passionate developer with a taste for design and UX. The areas where I shine:',
-            'skills.frontend.title': 'Frontend Developer',
-            'skills.frontend.body': 'Building interactive, responsive interfaces with React, Vue.js and modern web tech.',
-            'skills.backend.title': 'Backend Developer',
-            'skills.backend.body': 'Designing robust REST APIs and server applications with Node.js, Express and Python.',
-            'skills.uiux.title': 'UI/UX Design',
-            'skills.uiux.body': 'Crafting intuitive user experiences and visually pleasing interfaces.',
-            'skills.gamedev.title': 'Game Development',
-            'skills.gamedev.body': 'Creating games and prototypes with Unity, with a special love for game mechanics.',
+            'skills.title': 'SKILLS',
+            'skills.mobile': 'Mobile & IoT',
+            'skills.backend': 'Backend',
+            'skills.web': 'Web',
+            'skills.game': 'Game dev',
+            'skills.ai': 'AI',
 
-            // Experiences
-            'experiences.title': '&gt; experience <span class="uwu">(⌐■_■)</span> &lt;&lt;',
-            'exp.ongoing': 'Ongoing project',
+            'experiences.title': 'EXPERIENCE',
             'exp.ivalua.date': 'Oct 2024 - Present',
             'exp.ivalua.title': 'Software Engineer',
             'exp.ivalua.body': 'Specialized development in C#, .NET and SQL Server.',
@@ -164,49 +121,35 @@
             'exp.els.title': 'Frontend Web Developer',
             'exp.els.body': 'Web interface development and frontend integration.',
             'exp.ynov.date': 'Sep 2022 - Present',
-            'exp.ynov.title': "Bachelor's in Computer Science",
-            'exp.ynov.body': 'Full-stack training in development and computer technologies.',
+            'exp.ynov.title': "Master's in Computer Science (M2) · Software Development Expert",
+            'exp.ynov.body': 'Preparing the RNCP level 7 title (RNCP39583). Specializing in software, mobile and IoT development.',
             'exp.eea.date': 'Sep 2020 - Jul 2022',
             'exp.eea.title': "Bachelor's in Electronics, Electrical Engineering & Automation",
             'exp.eea.body': 'Training in electronic and automated systems.',
-            'exp.projectms.title': 'Indie Developer',
-            'exp.projectms.body': 'Building a Japanese-style JRPG with Godot Engine.',
 
-            // Testimonials
-            'testimonials.title': '&gt; testimonials <span class="uwu">(„• ֊ •„)</span> &lt;&lt;',
-            'testimonials.q1': '"Théau brings infectious energy to every project, and his eye for visual detail makes all the difference."',
-            'testimonials.a1': '— Camille, fellow dev',
-            'testimonials.q2': '"A patient and clear mentor. He made me love web development."',
-            'testimonials.a2': '— Ynov student',
-            'testimonials.note': '✏️ Swap these placeholder testimonials for real ones once you have them.',
-
-            // Guestbook
-            'guestbook.title': '&gt; guestbook <span class="uwu">(◠‿◠)</span> &lt;&lt;',
-            'guestbook.intro': 'Drop a little message! (saved locally in your browser only)',
-            'guestbook.namePlaceholder': 'your nickname',
-            'guestbook.msgPlaceholder': 'your kawaii message…',
-            'guestbook.sign': 'sign ♥',
-            'guestbook.empty': 'Be the first to sign! ♥',
-
-            // Contact
-            'contact.title': '&gt; contact <span class="uwu">(｡♥‿♥｡)</span> &lt;&lt;',
+            'contact.title': 'CONTACT',
             'contact.intro': 'Want to chat about a project, a collab, or just say hi?',
             'contact.name': 'Name',
             'contact.email': 'Email',
             'contact.message': 'Message',
-            'contact.send': 'Send ♥',
-            'contact.cv': '📄 Download my CV',
+            'contact.send': 'SEND',
+            'contact.cv': 'DOWNLOAD MY CV',
             'contact.fallback': 'Or by email: <a href="mailto:yapsonstudio@gmail.com">yapsonstudio@gmail.com</a>',
             'contact.sending': 'Sending…',
-            'contact.success': 'Thanks! Your message has been sent ♥',
+            'contact.success': 'Thanks! Your message has been sent.',
             'contact.errorGeneric': 'Oops, something went wrong.',
             'contact.errorNetwork': 'Network error, please try again later.',
-            'contact.errorUnconfigured': '⚠ Form not configured (replace YOUR_FORM_ID in index.html).',
-
-            // Footer
-            'footer.made': 'made with ❤️ and pastel colors | © 2025',
+            'contact.errorUnconfigured': '⚠ Form not configured.',
         },
     };
+
+    function read() {
+        try { return localStorage.getItem('lang'); } catch { return null; }
+    }
+
+    function currentLang() {
+        return read() || (navigator.language && navigator.language.startsWith('en') ? 'en' : 'fr');
+    }
 
     function t(key, lang) {
         lang = lang || currentLang();
@@ -220,54 +163,32 @@
             const v = t(el.getAttribute('data-i18n'), lang);
             if (v !== null) el.innerHTML = v;
         });
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const v = t(el.getAttribute('data-i18n-placeholder'), lang);
-            if (v !== null) el.setAttribute('placeholder', v);
-        });
         document.querySelectorAll('[data-i18n-title]').forEach(el => {
             const v = t(el.getAttribute('data-i18n-title'), lang);
             if (v !== null) el.setAttribute('title', v);
         });
-        document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
-            const v = t(el.getAttribute('data-i18n-aria-label'), lang);
-            if (v !== null) el.setAttribute('aria-label', v);
+        document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+            const v = t(el.getAttribute('data-i18n-alt'), lang);
+            if (v !== null) el.setAttribute('alt', v);
         });
         document.querySelectorAll('[data-i18n-content]').forEach(el => {
             const v = t(el.getAttribute('data-i18n-content'), lang);
             if (v !== null) el.setAttribute('content', v);
         });
 
-        localStorage.setItem('lang', lang);
+        const btn = document.getElementById('lang-toggle');
+        if (btn) btn.textContent = lang === 'fr' ? 'EN' : 'FR';
 
-        // Notifie les autres scripts (guestbook, contact-form…) qu'ils
-        // peuvent re-rendre leur contenu dynamique.
+        try { localStorage.setItem('lang', lang); } catch {}
+
+        // Les scripts qui génèrent du DOM (projects.js) re-rendent leur contenu.
         document.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
     }
 
-    function currentLang() {
-        return localStorage.getItem('lang')
-            || (navigator.language && navigator.language.startsWith('en') ? 'en' : 'fr');
-    }
-
-    // Expose une mini-API pour les scripts qui génèrent du DOM dynamiquement.
     window.i18n = { t, currentLang, applyLang };
 
-    // Appliquer immédiatement (avant les autres scripts qui regardent l'UI).
     applyLang(currentLang());
 
-    // Bouton dans le dock
-    function waitForToolsDock(cb) {
-        if (window.addToolToDock) cb();
-        else setTimeout(() => waitForToolsDock(cb), 100);
-    }
-    waitForToolsDock(() => {
-        const btn = window.addToolToDock('🌐', 'FR / EN', () => {
-            const next = currentLang() === 'fr' ? 'en' : 'fr';
-            applyLang(next);
-            btn.innerHTML = next.toUpperCase();
-        }, 'lang-toggle');
-        btn.style.fontSize = '0.75rem';
-        btn.style.fontFamily = "'IBM Plex Mono', monospace";
-        btn.innerHTML = currentLang().toUpperCase();
-    });
+    const btn = document.getElementById('lang-toggle');
+    if (btn) btn.addEventListener('click', () => applyLang(currentLang() === 'fr' ? 'en' : 'fr'));
 })();
